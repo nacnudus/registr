@@ -7,13 +7,20 @@ Registers are authoritative lists of things, built and maintained by the UK gove
 
 A single function `get_all_records()` is provided, which downloads all the records of a register into a tibble. This saves you from manually handling the paged download interface of large registers.
 
+Installation
+------------
+
+``` r
+devtools::install_github("openregisters/RegistersClientR")
+```
+
 Example
 -------
 
 This is an example of downloading the `country` register.
 
 ``` r
-library(registers)
+library(RegistersClientR)
 rr_records("country")
 #> # A tibble: 199 x 12
 #>    register phase `index-entry-number` `entry-number`   `entry-timestamp`
@@ -61,4 +68,7 @@ rr_records("country", page_size = 10)
 #> #   `start-date` <date>, `end-date` <date>
 ```
 
-Each page is imported with character data types first, then combined, and finally converted to (hopefully) appropriate data types by `readr::parse_guess()`.
+Data types
+----------
+
+Each page is imported with character data types first, then combined, and finally converted to (hopefully) appropriate data types by `readr::parse_guess()`. This avoids any problem with fields in the first page not being representative of later pages.
