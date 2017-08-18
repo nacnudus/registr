@@ -11,7 +11,7 @@ Installation
 ------------
 
 ``` r
-devtools::install_github("openregisters/RegistersClientR")
+devtools::install_github("openregister/RegistersClientR")
 ```
 
 Example
