@@ -1,5 +1,5 @@
-registers
-=========
+RegistersClientR
+================
 
 This package is a very basic wrapper for the [registers](https://registers.cloudapps.digital/) [API](https://registers-docs.cloudapps.digital/#api-documentation-for-registers).
 
