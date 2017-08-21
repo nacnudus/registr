@@ -17,7 +17,7 @@ devtools::install_github("openregister/RegistersClientR")
 Example
 -------
 
-This is an example of downloading the `country` register.
+You can download registers with `rr_records()`. All functions names will use the prefix `rr_*`.
 
 ``` r
 library(RegistersClientR)
@@ -46,7 +46,7 @@ By default, the 'beta' version of the register is downloaded. If you need anothe
 rr_records("country", "alpha")
 ```
 
-The default page size is 5000, which is the current maximum supported by the API and is sufficient to download most registers in one page. But to show that multiple pages are handled, you can specify a smaller page size.
+The default page size is 5000, which is the current maximum supported by the API, and is sufficient to download most registers in one page. But to show that multiple pages are handled, you can specify a smaller page size.
 
 ``` r
 rr_records("country", page_size = 10)
