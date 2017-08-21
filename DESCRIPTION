@@ -3,7 +3,7 @@ Title: Use the UK Government Registers API
 Version: 0.0.1
 Authors@R: person("Duncan", "Garmonsway", email = "duncan.garmonsway@gmail.com", role = c("aut", "cre"))
 Description: Download data from the API for UK Government registers.
-Depends: R (>= 3.4.1)
+Depends: R (>= 3.2.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
