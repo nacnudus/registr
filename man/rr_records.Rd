@@ -18,7 +18,11 @@ A tibble of all the records in a register
 }
 \description{
 Download all records from a register, automatically handling
-             pages of up to 5000 records each.
+             pages of up to 5000 records each and displaying a progress bar.
+
+             The progress bar can be disabled by setting
+             `options("dplyr.show_progress" = FALSE)` and running the
+             function inside `suppressMessages()` (see the examples).
 }
 \details{
 Does *not* include all entries, only the latest entry per record.
@@ -27,6 +31,10 @@ Does *not* include all entries, only the latest entry per record.
 \dontrun{
 if(interactive()){
  get_all_records("country", "beta")
+
+ # To suppress the progress bar
+ options("dplyr.show_progress" = FALSE)
+ suppressMessages(rr_records("country", "beta"))
  }
 }
 }

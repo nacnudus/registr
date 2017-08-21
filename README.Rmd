@@ -28,6 +28,7 @@ paged download interface of large registers.
 ## Installation
 
 ```r
+# install.packages("devtools") # if you don't already have devtools installed
 devtools::install_github("openregister/RegistersClientR")
 ```
 
@@ -55,6 +56,14 @@ multiple pages are handled, you can specify a smaller page size.
 
 ```{r, page_size}
 rr_records("country", page_size = 10)
+```
+
+To run 'silently' without showing the progress bar, you need both
+`suppressMessages` and to set a `dplyr` option.
+
+```{r}
+options("dplyr.show_progress" = FALSE)
+suppressMessages(rr_records("country", "beta"))
 ```
 
 ## Data types
