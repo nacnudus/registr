@@ -16,7 +16,7 @@
 #' @examples
 #' \dontrun{
 #' if(interactive()){
-#'  get_all_records("country", "beta")
+#'  rr_records("country", "beta")
 #'
 #'  # To suppress the progress bar
 #'  options("dplyr.show_progress" = FALSE)

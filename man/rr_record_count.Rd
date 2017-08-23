@@ -24,7 +24,7 @@ Queries the API for the number of records in a register, without
 \examples{
 \dontrun{
 if(interactive()){
- #EXAMPLE1
+ rr_record_count("country")
  }
 }
 }

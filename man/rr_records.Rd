@@ -33,7 +33,7 @@ Does *not* include all entries, only the latest entry per record.
 \examples{
 \dontrun{
 if(interactive()){
- get_all_records("country", "beta")
+ rr_records("country", "beta")
 
  # To suppress the progress bar
  options("dplyr.show_progress" = FALSE)

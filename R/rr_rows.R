@@ -10,7 +10,7 @@
 #' @examples
 #' \dontrun{
 #' if(interactive()){
-#'  #EXAMPLE1
+#'  rr_record_count("country")
 #'  }
 #' }
 #' @rdname rr_record_count
