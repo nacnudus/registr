@@ -2,6 +2,9 @@
 #' @description Download all records from a register, automatically handling
 #'              pages of up to 5000 records each and displaying a progress bar.
 #'
+#'              A 'record' is the latest entry per key, so the record count is
+#'              the number of unique keys in a register.
+#'
 #'              The progress bar can be disabled by setting
 #'              `options("dplyr.show_progress" = FALSE)` and running the
 #'              function inside `suppressMessages()` (see the examples).
@@ -23,7 +26,7 @@
 #' @rdname rr_records
 #' @export
 rr_records <- function(register, phase = "beta", page_size = 5000) {
-  record_count <- rr_rows(register, phase)
+  record_count <- rr_record_count(register, phase)
   page_count <- ceiling(record_count / page_size)
   base_url <-
     dplyr::if_else(phase == "beta",

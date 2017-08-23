@@ -20,6 +20,9 @@ A tibble of all the records in a register
 Download all records from a register, automatically handling
              pages of up to 5000 records each and displaying a progress bar.
 
+             A 'record' is the latest entry per key, so the record count is
+             the number of unique keys in a register.
+
              The progress bar can be disabled by setting
              `options("dplyr.show_progress" = FALSE)` and running the
              function inside `suppressMessages()` (see the examples).
