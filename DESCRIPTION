@@ -13,4 +13,6 @@ Imports: dplyr,
     jsonlite,
     magrittr,
     purrr,
-    readr
+    readr,
+    tibble,
+    stringr
