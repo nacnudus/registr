@@ -5,7 +5,9 @@ This package is a very basic wrapper for the [registers](https://registers.cloud
 
 Registers are authoritative lists of things, built and maintained by the UK government, for example, the `country` register is a list of countries.
 
-A single function `get_all_records()` is provided, which downloads all the records of a register into a tibble. This saves you from manually handling the paged download interface of large registers.
+* `rr_records()` All records from a register
+* `rr_entries()` All entries from a register (entries are a bit like
+* `rr_record_count()` The number of records in a register
 
 Installation
 ------------
@@ -15,8 +17,8 @@ Installation
 devtools::install_github("openregister/RegistersClientR")
 ```
 
-Example
--------
+Examples
+--------
 
 You can download registers with `rr_records()`. All functions names will use the prefix `rr_*`.
 
@@ -24,7 +26,7 @@ You can download registers with `rr_records()`. All functions names will use the
 library(RegistersClientR)
 rr_records("country")
 #> Downloading register 'country' from the 'beta' phase ...
-#> 
+#>
 #> # A tibble: 199 x 12
 #>    register phase `index-entry-number` `entry-number`   `entry-timestamp`
 #>       <chr> <chr>                <int>          <int>              <dttm>
@@ -54,7 +56,7 @@ The default page size is 5000, which is the current maximum supported by the API
 ``` r
 rr_records("country", page_size = 10)
 #> Downloading register 'country' from the 'beta' phase ...
-#> 
+#>
 #> # A tibble: 199 x 12
 #>    register phase `index-entry-number` `entry-number`   `entry-timestamp`
 #>       <chr> <chr>                <int>          <int>              <dttm>
