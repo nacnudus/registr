@@ -17,3 +17,4 @@ Imports: dplyr,
     tibble,
     tidyr,
     stringr
+Roxygen: list(markdown = TRUE)

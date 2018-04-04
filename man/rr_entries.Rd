@@ -9,35 +9,34 @@ rr_entries(register, phase = "beta")
 \arguments{
 \item{register}{character, name of the register, e.g. "school-eng"}
 
-\item{phase}{character, one of "beta", "alpha", "discovery", default: "beta"}
+\item{phase}{character, one of "beta", "alpha", default: "beta"}
 }
 \value{
 A tibble of all the entries in a register
 }
 \description{
-Download all entries from a register.
+Download all entries from a register.\preformatted{         An 'entry' is a sort-of version of a 'record', in that a
+         'record' is the latest entry per key.  There may be multiple
+         entries per key.
 
-             An 'entry' is a sort-of version of a 'record', in that a
-             'record' is the latest entry per key.  There may be multiple
-             entries per key.
+         The registers API separates each entry into an 'entry' and an
+         'item', where the entry records the key, as well as various
+         numbers and timestamps, and the item records the field values.
+         Th `rr_entries()` function combines each 'entry' and 'item' back
+         together.
 
-             The registers API separates each entry into an 'entry' and an
-             'item', where the entry records the key, as well as various
-             numbers and timestamps, and the item records the field values.
-             Th `rr_entries()` function combines each 'entry' and 'item' back
-             together.
+         Technically, an entry can have multiple related items, which
+         means there can be multiple sets of field values against a
+         single key, but no registers use that possibility ('indexes' do,
+         which is another story) so this function assumes one item per
+         entry.
 
-             Technically, an entry can have multiple related items, which
-             means there can be multiple sets of field values against a
-             single key, but no registers use that possibility ('indexes' do,
-             which is another story) so this function assumes one item per
-             entry.
-
-             This function doesn't have to handle paged downloads, because it
-             downloads the whole register as a zip file.
+         This function doesn't have to handle paged downloads, because it
+         downloads the whole register as a zip file.
+}
 }
 \details{
-*Does* include all entries, not merely the latest entry per record.
+\emph{Does} include all entries, not merely the latest entry per record.
 }
 \examples{
 \dontrun{

@@ -9,7 +9,7 @@ rr_records(register, phase = "beta", page_size = 5000)
 \arguments{
 \item{register}{character, name of the register, e.g. "school-eng"}
 
-\item{phase}{character, one of "beta", "alpha", "discovery", default: "beta"}
+\item{phase}{character, one of "beta", "alpha", default: "beta"}
 
 \item{page_size}{numeric, number of records per page of download, default: 5000}
 }
@@ -18,17 +18,16 @@ A tibble of all the records in a register
 }
 \description{
 Download all records from a register, automatically handling
-             pages of up to 5000 records each and displaying a progress bar.
+pages of up to 5000 records each and displaying a progress bar.\preformatted{         A 'record' is the latest entry per key, so the record count is
+         the number of unique keys in a register.
 
-             A 'record' is the latest entry per key, so the record count is
-             the number of unique keys in a register.
-
-             The progress bar can be disabled by setting
-             `options("dplyr.show_progress" = FALSE)` and running the
-             function inside `suppressMessages()` (see the examples).
+         The progress bar can be disabled by setting
+         `options("dplyr.show_progress" = FALSE)` and running the
+         function inside `suppressMessages()` (see the examples).
+}
 }
 \details{
-Does *not* include all entries, only the latest entry per record.
+Does \emph{not} include all entries, only the latest entry per record.
 }
 \examples{
 \dontrun{

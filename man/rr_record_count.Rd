@@ -9,17 +9,16 @@ rr_record_count(register, phase)
 \arguments{
 \item{register}{character, name of the register, e.g. "school-eng"}
 
-\item{phase}{character, one of "beta", "alpha", "discovery", default: "beta"}
+\item{phase}{character, one of "beta", "alpha", default: "beta"}
 }
 \value{
 a numeric vector of length 1
 }
 \description{
 Queries the API for the number of records in a register, without
-             having to download the records themselves.
-
-             A 'record' is the latest entry per key, so the record count is
-             the number of unique keys in a register.
+having to download the records themselves.\preformatted{         A 'record' is the latest entry per key, so the record count is
+         the number of unique keys in a register.
+}
 }
 \examples{
 \dontrun{
