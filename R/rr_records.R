@@ -9,7 +9,7 @@
 #'              `options("dplyr.show_progress" = FALSE)` and running the
 #'              function inside `suppressMessages()` (see the examples).
 #' @param register character, name of the register, e.g. "school-eng"
-#' @param phase character, one of "beta", "alpha", "discovery", default: "beta"
+#' @param phase character, one of "beta", "alpha", default: "beta"
 #' @param page_size numeric, number of records per page of download, default: 5000
 #' @return A tibble of all the records in a register
 #' @details Does *not* include all entries, only the latest entry per record.

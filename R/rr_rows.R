@@ -5,7 +5,7 @@
 #'              A 'record' is the latest entry per key, so the record count is
 #'              the number of unique keys in a register.
 #' @param register character, name of the register, e.g. "school-eng"
-#' @param phase character, one of "beta", "alpha", "discovery", default: "beta"
+#' @param phase character, one of "beta", "alpha", default: "beta"
 #' @return a numeric vector of length 1
 #' @examples
 #' \dontrun{

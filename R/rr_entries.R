@@ -21,7 +21,7 @@
 #'              downloads the whole register as a zip file.
 #'
 #' @param register character, name of the register, e.g. "school-eng"
-#' @param phase character, one of "beta", "alpha", "discovery", default: "beta"
+#' @param phase character, one of "beta", "alpha", default: "beta"
 #' @return A tibble of all the entries in a register
 #' @details *Does* include all entries, not merely the latest entry per record.
 #' @examples
