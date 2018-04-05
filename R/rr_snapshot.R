@@ -70,6 +70,8 @@ rr_snapshot <- function(register, sequence = c("entry-number", "timestamp"),
                         maximum = NULL, include_maximum = TRUE) {
   UseMethod("rr_snapshot")
 }
+
+#' @export
 rr_snapshot.register <- function(register,
                                  sequence = c("entry-number", "timestamp"),
                                  maximum = NULL, include_maximum = TRUE) {
