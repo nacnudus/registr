@@ -52,6 +52,7 @@ rr_register <- function(register, phase = "beta") {
     dplyr::filter(entry_data, type == "user") %>%
     dplyr::select(-json) %>%
     tidyr::unnest() %>%
+    dplyr::bind_rows(blank_tibble(unique(fields$field))) %>%
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
   structure(list(root_hash = root_hash,

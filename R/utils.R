@@ -29,3 +29,13 @@ missing_col_names.data.frame <- function(.data, ...) {
   col_names <- purrr::map_chr(rlang::enquos(...), rlang::quo_text)
   col_names[!(col_names %in% colnames(.data))]
 }
+
+#' Construct a zero-row tibble with given column names
+#'
+#' @details All columns will be `logical` so that they don't disturb exiting
+#'   columns when appended with [dplyr::bind_rows()]`
+blank_tibble <- function(col_names) {
+  columns <- purrr::map(col_names, ~ rlang::expr(logical()))
+  names(columns) <- col_names
+  tibble(!!! columns)
+}
