@@ -16,5 +16,7 @@ Imports: dplyr,
     readr,
     tibble,
     tidyr,
+    digest,
+    rlang,
     stringr
 Roxygen: list(markdown = TRUE)
