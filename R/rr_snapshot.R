@@ -97,4 +97,12 @@ rr_snapshot.register <- function(register,
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
   list(name = name, custodian = custodian, fields = fields, data = user_entries)
+  structure(list(root_hash = register$root_hash,
+                 entries = register$entries,
+                 items = register$items,
+                 schema = list(names = name,
+                               custodians = custodian,
+                               fields = fields),
+                 data = user_entries),
+            class = "register")
 }
