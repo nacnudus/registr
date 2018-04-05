@@ -27,10 +27,9 @@ rr_register <- function(register, phase = "beta") {
     glue::glue()
   message("Downloading register '", register,
           "' from the '", phase, "' phase ...\n")
-  # register_path <- tempfile()
-  # on.exit(unlink(register_path))
-  # download.file(register_url, register_path)
-  register_path <- "./temp.rsf"
+  register_path <- tempfile()
+  on.exit(unlink(register_path))
+  download.file(register_url, register_path)
   rsf <- readr::read_lines(register_path)
   root_hash <- parse_root_hash(rsf)
   entries <- parse_entries(rsf)
@@ -61,7 +60,7 @@ rr_register <- function(register, phase = "beta") {
                  schema = list(names = names,
                                custodians = custodians,
                                fields = fields),
-                 data = list(entries = user_entries)),
+                 data = user_entries),
             class = "register")
 }
 
