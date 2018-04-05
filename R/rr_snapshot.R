@@ -76,24 +76,24 @@ rr_snapshot.register <- function(register,
                                  sequence = c("entry-number", "timestamp"),
                                  maximum = NULL, include_maximum = TRUE) {
   entries <- rr_records(register$entries, sequence, maximum, include_maximum)
-  entry_data <- resolve_entry_items(entries, items)
+  entry_data <- resolve_entry_items(entries, register$items)
   system_entries <- dplyr::filter(entry_data, type == "system")
   name <-
     dplyr::filter(system_entries, key == "name") %>%
     dplyr::select(-json) %>%
-    unnest()
+    tidyr::unnest()
   custodian <-
     dplyr::filter(system_entries, key == "custodian") %>%
     dplyr::select(-json) %>%
-    unnest()
+    tidyr::unnest()
   fields <-
     dplyr::filter(system_entries, stringr::str_detect(key, "^field:")) %>%
     dplyr::select(-json) %>%
-    unnest()
+    tidyr::unnest()
   user_entries <-
     dplyr::filter(entry_data, type == "user") %>%
     dplyr::select(-json) %>%
-    unnest() %>%
+    tidyr::unnest() %>%
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
   list(name = name, custodian = custodian, fields = fields, data = user_entries)

@@ -40,19 +40,19 @@ rr_register <- function(register, phase = "beta") {
   names <-
     dplyr::filter(system_entries, key == "name") %>%
     dplyr::select(-json) %>%
-    unnest()
+    tidyr::unnest()
   custodians <-
     dplyr::filter(system_entries, key == "custodian") %>%
     dplyr::select(-json) %>%
-    unnest()
+    tidyr::unnest()
   fields <-
     dplyr::filter(system_entries, stringr::str_detect(key, "^field:")) %>%
     dplyr::select(-json) %>%
-    unnest()
+    tidyr::unnest()
   user_entries <-
     dplyr::filter(entry_data, type == "user") %>%
     dplyr::select(-json) %>%
-    unnest() %>%
+    tidyr::unnest() %>%
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
   structure(list(root_hash = root_hash,
@@ -91,7 +91,7 @@ parse_items <- function(rsf) {
                                         algo = "sha256",
                                         serialize = FALSE),
                   json = purrr::map(json, jsonlite::fromJSON),
-                  data = purrr::map(json, as_tibble))
+                  data = purrr::map(json, tibble::as_tibble))
 }
 
 parse_hash_list <- function(x) {
