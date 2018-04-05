@@ -2,6 +2,7 @@
 
 S3method(rr_snapshot,register)
 export("%>%")
+export(apply_datatype)
 export(parse_curie)
 export(rr_records)
 export(rr_register)
