@@ -64,7 +64,7 @@
 #'   select(`entry-number`, timestamp, custodian)
 #'  }
 #' }
-#' @rdname rr_records
+#'
 #' @export
 rr_snapshot <- function(register, sequence = c("entry-number", "timestamp"),
                         maximum = NULL, include_maximum = TRUE) {

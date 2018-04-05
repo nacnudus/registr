@@ -27,4 +27,5 @@ You should probably run \code{\link[=rr_snapshot]{rr_snapshot()}} on the output 
   rr_register("country", "beta")
 }
 
+
 }

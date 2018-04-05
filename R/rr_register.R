@@ -17,7 +17,6 @@
 #'   rr_register("country", "beta")
 #' }
 #'
-#' @rdname rr_register
 #'
 #' @export
 rr_register <- function(register, phase = "beta") {
