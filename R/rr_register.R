@@ -55,6 +55,12 @@ rr_register <- function(register, phase = "beta") {
     dplyr::bind_rows(blank_tibble(unique(fields$field))) %>%
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
+  converters <-
+    map2(rlang::syms(fields$field),
+         fields$datatype,
+         ~ rlang::expr(apply_datatype(!! .x, !! .y)))
+  names(converters) <- fields$field
+  user_entries <- dplyr::mutate(user_entries, !!! converters)
   structure(list(root_hash = root_hash,
                  entries = entries,
                  items = items,

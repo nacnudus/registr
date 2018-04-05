@@ -13,7 +13,17 @@ apply_datatype <- function(x, datatype) {
   switch(datatype,
          curie = x,
          url = x,
-         datetime = parsedate::parse_iso_8601(x),
+         datetime = maybe_parse_iso_8601(x),
          string = x,
          text = x)
+}
+
+maybe_parse_iso_8601 <- function(x) {
+  purrr::map(x,
+             ~ if (is.na(.x)) {
+               as.POSIXct(NA) }
+             else {
+               parsedate::parse_iso_8601(.x)
+             }) %>%
+  do.call(c, .)
 }

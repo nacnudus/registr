@@ -96,6 +96,12 @@ rr_snapshot.register <- function(register,
     tidyr::unnest() %>%
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
+  converters <-
+    map2(rlang::syms(fields$field),
+         fields$datatype,
+         ~ rlang::expr(apply_datatype(!! .x, !! .y)))
+  names(converters) <- fields$field
+  user_entries <- dplyr::mutate(user_entries, !!! converters)
   list(name = name, custodian = custodian, fields = fields, data = user_entries)
   structure(list(root_hash = register$root_hash,
                  entries = register$entries,
