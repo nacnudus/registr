@@ -4,7 +4,7 @@
 #' the equivalent R datatypes.
 #'
 #' @param x Character vector (a field of a register).
-#' @param x Name of the datatype to apply: currently one of `"curie"`, `"url"`,
+#' @param datatype Name of the datatype to apply: currently one of `"curie"`, `"url"`,
 #'   `"datetime"`, `"string"` and `"text"`.
 #' @export
 #' @examples

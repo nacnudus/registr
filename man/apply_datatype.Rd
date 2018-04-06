@@ -9,7 +9,7 @@ apply_datatype(x, datatype)
 \arguments{
 \item{x}{Character vector (a field of a register).}
 
-\item{x}{Name of the datatype to apply: currently one of \code{"curie"}, \code{"url"},
+\item{datatype}{Name of the datatype to apply: currently one of \code{"curie"}, \code{"url"},
 \code{"datetime"}, \code{"string"} and \code{"text"}.}
 }
 \description{
