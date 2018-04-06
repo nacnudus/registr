@@ -54,7 +54,8 @@ rr_register <- function(file, phase = c("beta", "alpha"),
   cardinality_one_fields <-
     fields %>%
     dplyr::filter(cardinality == "1") %>%
-    dplyr::pull(field)
+    dplyr::pull(field) %>%
+    unique()
   user_entries <-
     entry_data %>%
     dplyr::filter(type == "user") %>%
