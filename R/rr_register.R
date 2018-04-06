@@ -10,6 +10,10 @@
 #' @param phase character, one of "beta", "alpha", default: "beta"
 #' @param path_type Character, one of `"url"` or `"file"` to decide what to do
 #'   with `register`.
+#' @param parse_datetimes Logical, whether to parse ISO8601 strings as datetimes
+#'   with [parsedate::parse_iso_8601()], otherwise leave as a string.  Partial
+#'   datetimes are parsed as the earliest possible datetime, e.g. `"2018"`
+#'   becomes `"2018-01-01 UTC"`.
 #'
 #' @return An S3 object of class `register`
 #'
@@ -53,7 +57,7 @@ rr_register <- function(register, phase = c("beta", "alpha"),
                 fields$datatype,
                 ~ rlang::expr(apply_datatype(!! .x,
                                              !! .y,
-                                             apply_iso_8601 = parse_datetimes)))
+                                             apply_iso_8601 = !! parse_datetimes)))
   names(converters) <- fields$field
   user_entries <- dplyr::mutate(user_entries, !!! converters)
   structure(list(root_hash = root_hash,

@@ -4,20 +4,29 @@
 \alias{rr_register}
 \title{Download a register}
 \usage{
-rr_register(register, phase = "beta")
+rr_register(register, phase = c("beta", "alpha"), path_type = c("url",
+  "file"), parse_datetimes = FALSE)
 }
 \arguments{
 \item{register}{character, name of the register, e.g. "school-eng"}
 
 \item{phase}{character, one of "beta", "alpha", default: "beta"}
+
+\item{path_type}{Character, one of \code{"url"} or \code{"file"} to decide what to do
+with \code{register}.}
+
+\item{parse_datetimes}{Logical, whether to parse ISO8601 strings as datetimes
+with \code{\link[parsedate:parse_iso_8601]{parsedate::parse_iso_8601()}}, otherwise leave as a string.  Partial
+datetimes are parsed as the earliest possible datetime, e.g. \code{"2018"}
+becomes \code{"2018-01-01 UTC"}.}
 }
 \value{
 An S3 object of class \code{register}
 }
 \description{
-Downloads a whole register and constructs an object that can be
-interrogated for its records, entries, items, schema, links to other
-registers, etc.
+Downloads a whole register (or reads it from a file) and
+constructs an object that can be interrogated for its records, entries,
+items, schema, links to other registers, etc.
 
 You should probably run \code{\link[=rr_snapshot]{rr_snapshot()}} on the output before using it.
 }

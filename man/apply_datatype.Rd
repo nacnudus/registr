@@ -4,13 +4,18 @@
 \alias{apply_datatype}
 \title{Apply registers-style datatypes to fields}
 \usage{
-apply_datatype(x, datatype)
+apply_datatype(x, datatype, apply_iso_8601 = TRUE)
 }
 \arguments{
 \item{x}{Character vector (a field of a register).}
 
 \item{datatype}{Name of the datatype to apply: currently one of \code{"curie"}, \code{"url"},
 \code{"datetime"}, \code{"string"}, \code{"integer"} and \code{"text"}.}
+
+\item{apply_iso_8601}{Logical, whether to parse ISO8601 strings as datetimes
+with \code{\link[parsedate:parse_iso_8601]{parsedate::parse_iso_8601()}}, otherwise leave as a string.  Partial
+datetimes are parsed as the earliest possible datetime, e.g. \code{"2018"}
+becomes \code{"2018-01-01 UTC"}.}
 }
 \description{
 Apply registers-style datatypes to fields

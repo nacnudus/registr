@@ -17,6 +17,10 @@
 #'   register.
 #' @param include_maximum Logical, whether to include entries whose
 #' `entry-number` or `timestamp` equals `maximum`.
+#' @param parse_datetimes Logical, whether to parse ISO8601 strings as datetimes
+#'   with [parsedate::parse_iso_8601()], otherwise leave as a string.  Partial
+#'   datetimes are parsed as the earliest possible datetime, e.g. `"2018"`
+#'   becomes `"2018-01-01 UTC"`.
 #'
 #' @return A tibble of records (latest entry per key).
 #'
@@ -67,14 +71,16 @@
 #'
 #' @export
 rr_snapshot <- function(register, sequence = c("entry-number", "timestamp"),
-                        maximum = NULL, include_maximum = TRUE) {
+                        maximum = NULL, include_maximum = TRUE,
+                        parse_datetimes = FALSE) {
   UseMethod("rr_snapshot")
 }
 
 #' @export
 rr_snapshot.register <- function(register,
                                  sequence = c("entry-number", "timestamp"),
-                                 maximum = NULL, include_maximum = TRUE) {
+                                 maximum = NULL, include_maximum = TRUE,
+                                 parse_datetimes = FALSE) {
   entries <- rr_records(register$entries, sequence, maximum, include_maximum)
   entry_data <- resolve_entry_items(entries, register$items)
   system_entries <- dplyr::filter(entry_data, type == "system")
@@ -100,7 +106,7 @@ rr_snapshot.register <- function(register,
   converters <-
     purrr::map2(rlang::syms(fields$field),
                 fields$datatype,
-                ~ rlang::expr(apply_datatype(!! .x, !! .y, parse_datetimes)))
+                ~ rlang::expr(apply_datatype(!! .x, !! .y, !! parse_datetimes)))
   names(converters) <- fields$field
   user_entries <- dplyr::mutate(user_entries, !!! converters)
   list(name = name, custodian = custodian, fields = fields, data = user_entries)

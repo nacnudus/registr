@@ -5,7 +5,7 @@
 \title{A snapshot of a whole register}
 \usage{
 rr_snapshot(register, sequence = c("entry-number", "timestamp"),
-  maximum = NULL, include_maximum = TRUE)
+  maximum = NULL, include_maximum = TRUE, parse_datetimes = FALSE)
 }
 \arguments{
 \item{register}{An object of class \code{register}, returned by \code{\link[=rr_register]{rr_register()}}.}
@@ -20,6 +20,11 @@ register.}
 
 \item{include_maximum}{Logical, whether to include entries whose
 \code{entry-number} or \code{timestamp} equals \code{maximum}.}
+
+\item{parse_datetimes}{Logical, whether to parse ISO8601 strings as datetimes
+with \code{\link[parsedate:parse_iso_8601]{parsedate::parse_iso_8601()}}, otherwise leave as a string.  Partial
+datetimes are parsed as the earliest possible datetime, e.g. \code{"2018"}
+becomes \code{"2018-01-01 UTC"}.}
 }
 \value{
 A tibble of records (latest entry per key).
