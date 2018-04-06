@@ -5,7 +5,7 @@
 #'
 #' @param x Character vector (a field of a register).
 #' @param datatype Name of the datatype to apply: currently one of `"curie"`, `"url"`,
-#'   `"datetime"`, `"string"` and `"text"`.
+#'   `"datetime"`, `"string"`, `"integer"` and `"text"`.
 #' @export
 #' @examples
 #' apply_datatype("2014-04", "datetime")
@@ -15,6 +15,7 @@ apply_datatype <- function(x, datatype) {
          url = x,
          datetime = maybe_parse_iso_8601(x),
          string = x,
+         integer = as.integer(x),
          text = x)
 }
 

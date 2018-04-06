@@ -10,7 +10,7 @@ apply_datatype(x, datatype)
 \item{x}{Character vector (a field of a register).}
 
 \item{datatype}{Name of the datatype to apply: currently one of \code{"curie"}, \code{"url"},
-\code{"datetime"}, \code{"string"} and \code{"text"}.}
+\code{"datetime"}, \code{"string"}, \code{"integer"} and \code{"text"}.}
 }
 \description{
 Apply registers-style datatypes to fields
