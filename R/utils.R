@@ -19,6 +19,7 @@ globalVariables(c("data",
                   "."))
 
 #' Return column names missing from a data frame
+#'
 #' @param .data Data frame.
 #' @param ... names of columns.
 #' @return A character vector of column names that aren't in `.data`.
