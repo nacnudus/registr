@@ -4,13 +4,13 @@
 \alias{rr_register}
 \title{Download a register}
 \usage{
-rr_register(register, phase = c("beta", "alpha"), path_type = c("url",
-  "file"), parse_datetimes = FALSE)
+rr_register(name, phase = c("beta", "alpha"), path_type = c("url", "file"),
+  parse_datetimes = FALSE)
 }
 \arguments{
-\item{register}{character, name of the register, e.g. "school-eng"}
+\item{name}{Character, name of the register, e.g. "school-eng"}
 
-\item{phase}{character, one of "beta", "alpha", default: "beta"}
+\item{phase}{Character, one of "beta", "alpha", default: "beta"}
 
 \item{path_type}{Character, one of \code{"url"} or \code{"file"} to decide what to do
 with \code{register}.}

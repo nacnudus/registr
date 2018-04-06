@@ -6,8 +6,8 @@
 #'
 #'   You should probably run [rr_snapshot()] on the output before using it.
 #'
-#' @param register character, name of the register, e.g. "school-eng"
-#' @param phase character, one of "beta", "alpha", default: "beta"
+#' @param name Character, name of the register, e.g. "school-eng"
+#' @param phase Character, one of "beta", "alpha", default: "beta"
 #' @param path_type Character, one of `"url"` or `"file"` to decide what to do
 #'   with `register`.
 #' @param parse_datetimes Logical, whether to parse ISO8601 strings as datetimes
@@ -25,9 +25,9 @@
 #'
 #'
 #' @export
-rr_register <- function(register, phase = c("beta", "alpha"),
+rr_register <- function(name, phase = c("beta", "alpha"),
                         path_type = c("url", "file"), parse_datetimes = FALSE) {
-  rsf <- register_lines(register, phase, path_type)
+  rsf <- register_lines(name, phase, path_type)
   root_hash <- parse_root_hash(rsf)
   entries <- parse_entries(rsf)
   items <- parse_items(rsf)
