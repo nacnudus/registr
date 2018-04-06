@@ -11,3 +11,11 @@ parse_curie <- function(curie) {
   reference <- stringr::str_extract(curie, "(?<=:)[^:]+$")
   list(prefix = prefix, reference = reference)
 }
+
+curie_prefixes <- function(curies) {
+  if (is.vector(curies)) {
+    purrr::map_chr(curies, ~ curie_prefixes(.x)$prefix)
+  } else {
+    curie_prefixes(.x)$prefix
+  }
+}

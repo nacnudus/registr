@@ -85,28 +85,38 @@ rr_snapshot.register <- function(register,
   entry_data <- resolve_entry_items(entries, register$items)
   system_entries <- dplyr::filter(entry_data, type == "system")
   name <-
-    dplyr::filter(system_entries, key == "name") %>%
-    dplyr::select(-json) %>%
-    tidyr::unnest()
+    system_entries %>%
+    dplyr::filter(key == "name") %>%
+    flatten_entries()
   custodian <-
-    dplyr::filter(system_entries, key == "custodian") %>%
-    dplyr::select(-json) %>%
-    tidyr::unnest()
+    system_entries %>%
+    dplyr::filter(key == "custodian") %>%
+    flatten_entries()
   fields <-
-    dplyr::filter(system_entries, stringr::str_detect(key, "^field:")) %>%
-    dplyr::select(-json) %>%
-    tidyr::unnest()
+    system_entries %>%
+    dplyr::filter(stringr::str_detect(key, "^field:")) %>%
+    flatten_entries()
+  cardinality_one_fields <-
+    fields %>%
+    dplyr::filter(cardinality == "1") %>%
+    dplyr::pull(field)
   user_entries <-
-    dplyr::filter(entry_data, type == "user") %>%
+    entry_data %>%
+    dplyr::filter(type == "user") %>%
     dplyr::select(-json) %>%
     tidyr::unnest() %>%
     dplyr::bind_rows(blank_tibble(unique(fields$field))) %>%
+    dplyr::mutate_if(is.list,
+                     ~ purrr::map(.x, ~ if (is.null(.x)) NA else .x)) %>%
+    dplyr::mutate_at(cardinality_one_fields, purrr::flatten_chr) %>%
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
   converters <-
-    purrr::map2(rlang::syms(fields$field),
-                fields$datatype,
-                ~ rlang::expr(apply_datatype(!! .x, !! .y, !! parse_datetimes)))
+    purrr::pmap(list(rlang::syms(fields$field),
+                     fields$datatype,
+                     fields$cardinality),
+                ~ rlang::expr(apply_datatype(!! ..1, !! ..2, !! ..3,
+                                             !! parse_datetimes)))
   names(converters) <- fields$field
   user_entries <- dplyr::mutate(user_entries, !!! converters)
   list(name = name, custodian = custodian, fields = fields, data = user_entries)

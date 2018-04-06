@@ -46,9 +46,17 @@ curie_links <- function(x) {
 #' @rdname curie
 #' @export
 curie_links.default <- function(x) {
-  purrr::map_chr(x, ~ parse_curie(.x)$prefix) %>%
+  purrr::map(x,
+             ~ if (length(.x) > 1) {
+               purrr::map_chr(.x, ~ parse_curie(.x)$prefix)
+             } else {
+               parse_curie(.x)$prefix
+             }) %>%
+    purrr::flatten() %>%
     purrr::discard(is.na) %>%
-    unique()
+    purrr::flatten_chr() %>%
+    unique() %>%
+    sort()
 }
 
 #' @rdname curie
@@ -58,5 +66,6 @@ curie_links.register <- function(x) {
   dplyr::select(curie_fields(x)) %>%
   purrr::map(curie_links) %>%
   purrr::flatten_chr() %>%
-  unique()
+  unique() %>%
+  sort()
 }

@@ -4,7 +4,7 @@
 \alias{apply_datatype}
 \title{Apply registers-style datatypes to fields}
 \usage{
-apply_datatype(x, datatype, apply_iso_8601 = TRUE)
+apply_datatype(x, datatype, cardinality, apply_iso_8601 = TRUE)
 }
 \arguments{
 \item{x}{Character vector (a field of a register).}
@@ -12,6 +12,9 @@ apply_datatype(x, datatype, apply_iso_8601 = TRUE)
 \item{datatype}{Name of the datatype to apply: currently one of \code{"curie"}, \code{"url"},
 \code{"datetime"}, \code{"string"}, \code{"integer"} and \code{"text"}.  Unrecognised datatypes
 will be returned unaltered.}
+
+\item{cardinality}{Character, one of \code{"1"} and \code{"n"} to say whether each
+element of \code{x} contains multiple values separated by semicolons.}
 
 \item{apply_iso_8601}{Logical, whether to parse ISO8601 strings as datetimes
 with \code{\link[parsedate:parse_iso_8601]{parsedate::parse_iso_8601()}}, otherwise leave as a string.  Partial
@@ -22,8 +25,8 @@ becomes \code{"2018-01-01 UTC"}.}
 Apply registers-style datatypes to fields
 }
 \details{
-Registers use their own datatypes. This function converts strings to
-the equivalent R datatypes.
+Registers use their own datatypes. This function converts character
+vectors to the equivalent R datatypes, handling cardinality='n'.
 }
 \examples{
 apply_datatype("2014-04", "datetime")

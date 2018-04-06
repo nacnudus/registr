@@ -38,7 +38,7 @@ missing_col_names.data.frame <- function(.data, ...) {
 #'
 #' @param col_names Character vector of column names
 blank_tibble <- function(col_names) {
-  columns <- purrr::map(col_names, ~ rlang::expr(logical()))
+  columns <- purrr::map(col_names, ~ rlang::expr(list()))
   names(columns) <- col_names
   tibble::tibble(!!! columns)
 }

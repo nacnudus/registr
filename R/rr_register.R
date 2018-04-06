@@ -38,30 +38,38 @@ rr_register <- function(file, phase = c("beta", "alpha"),
   entry_data <- resolve_entry_items(entries, items)
   system_entries <- dplyr::filter(entry_data, type == "system")
   names <-
-    dplyr::filter(system_entries, key == "name") %>%
-    dplyr::select(-json) %>%
-    tidyr::unnest()
+    system_entries %>%
+    dplyr::filter(key == "name") %>%
+    flatten_entries()
   custodians <-
-    dplyr::filter(system_entries, key == "custodian") %>%
-    dplyr::select(-json) %>%
-    tidyr::unnest()
+    system_entries %>%
+    dplyr::filter(key == "custodian") %>%
+    flatten_entries()
   fields <-
-    dplyr::filter(system_entries, stringr::str_detect(key, "^field:")) %>%
-    dplyr::select(-json) %>%
-    tidyr::unnest()
+    system_entries %>%
+    dplyr::filter(stringr::str_detect(key, "^field:")) %>%
+    flatten_entries()
+  cardinality_one_fields <-
+    fields %>%
+    dplyr::filter(cardinality == "1") %>%
+    dplyr::pull(field)
   user_entries <-
-    dplyr::filter(entry_data, type == "user") %>%
+    entry_data %>%
+    dplyr::filter(type == "user") %>%
     dplyr::select(-json) %>%
     tidyr::unnest() %>%
     dplyr::bind_rows(blank_tibble(unique(fields$field))) %>%
+    dplyr::mutate_if(is.list,
+                     ~ purrr::map(.x, ~ if (is.null(.x)) NA else .x)) %>%
+    dplyr::mutate_at(cardinality_one_fields, purrr::flatten_chr) %>%
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
   converters <-
-    purrr::map2(rlang::syms(fields$field),
-                fields$datatype,
-                ~ rlang::expr(apply_datatype(!! .x,
-                                             !! .y,
-                                             apply_iso_8601 = !! parse_datetimes)))
+    purrr::pmap(list(rlang::syms(fields$field),
+                     fields$datatype,
+                     fields$cardinality),
+                ~ rlang::expr(apply_datatype(!! ..1, !! ..2, !! ..3,
+                                             !! parse_datetimes)))
   names(converters) <- fields$field
   user_entries <- dplyr::mutate(user_entries, !!! converters)
   structure(list(root_hash = root_hash,
@@ -100,6 +108,7 @@ parse_items <- function(rsf) {
                                         algo = "sha256",
                                         serialize = FALSE),
                   json = purrr::map(json, jsonlite::fromJSON),
+                  json = purrr::modify_depth(json, 2, list),
                   data = purrr::map(json, tibble::as_tibble))
 }
 
@@ -112,4 +121,19 @@ resolve_entry_items <- function(entries, items) {
     tidyr::unnest(`hash-list`) %>%
     dplyr::rename(hash = `hash-list`) %>%
     dplyr::left_join(items, by = "hash")
+}
+
+# Flatten list-columns as long as they aren't cardinality='n'.
+# It's complicated because by this stage some list-elements can be NULL
+flatten_entries <- function(x, fields_to_flatten = NULL) {
+  x <-
+    x %>%
+    dplyr::select(-json) %>%
+    tidyr::unnest()
+  if (is.null(fields_to_flatten))
+    fields_to_flatten <- colnames(x)[purrr::map_lgl(x, is.list)]
+  x %>%
+    dplyr::mutate_if(is.list,
+                     ~ purrr::map(.x, ~ if (is.null(.x)) NA else .x)) %>%
+    dplyr::mutate_at(fields_to_flatten, purrr::flatten_chr)
 }
