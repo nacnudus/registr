@@ -8,11 +8,11 @@ rr_records(entries, sequence = c("entry-number", "timestamp"),
   maximum = NULL, include_maximum = TRUE)
 }
 \arguments{
-\item{entries}{A data frame or tibble with at least the columns \code{key} and
+\item{entries}{A data frame or tibble with at least the fields \code{key} and
 either \code{entry-number} or \code{timestamp}, depending on the value of \code{sequence}.}
 
 \item{sequence}{One of \code{"entry-number"} (default) or \code{"timestamp"}.  The
-snapshot is taken at the \code{maximum} value of this column of \code{entries}.}
+snapshot is taken at the \code{maximum} value of this field of \code{entries}.}
 
 \item{maximum}{An \code{integer} if \code{sequence} is \code{"entry-number" or}POSIXct\code{if}sequence\code{is}"timestamp"\code{, giving the time at which to take the snapshot. Only the latest entry up to this value will be kept, per}key`.  By default
 it is the maximum of all entries, to return the most recent state of the

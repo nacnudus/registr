@@ -11,7 +11,7 @@ rr_snapshot(register, sequence = c("entry-number", "timestamp"),
 \item{register}{An object of class \code{register}, returned by \code{\link[=rr_register]{rr_register()}}.}
 
 \item{sequence}{One of \code{"entry-number"} (default) or \code{"timestamp"}.  The
-snapshot is taken at the \code{maximum} value of this column of
+snapshot is taken at the \code{maximum} value of this field of
 \code{register$entries}.}
 
 \item{maximum}{An \code{integer} if \code{sequence} is \code{"entry-number" or}POSIXct\code{if}sequence\code{is}"timestamp"\code{, giving the time at which to take the snapshot. Only the latest entry up to this value will be kept, per}key`.  By default

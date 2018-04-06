@@ -8,7 +8,7 @@
 #'
 #' @param register An object of class `register`, returned by [rr_register()].
 #' @param sequence One of `"entry-number"` (default) or `"timestamp"`.  The
-#'   snapshot is taken at the `maximum` value of this column of
+#'   snapshot is taken at the `maximum` value of this field of
 #'   `register$entries`.
 #' @param maximum An `integer` if `sequence` is `"entry-number" or `POSIXct` if
 #'   `sequence` is `"timestamp"`, giving the time at which to take the snapshot.
