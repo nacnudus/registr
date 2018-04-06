@@ -37,5 +37,5 @@ missing_col_names.data.frame <- function(.data, ...) {
 blank_tibble <- function(col_names) {
   columns <- purrr::map(col_names, ~ rlang::expr(logical()))
   names(columns) <- col_names
-  tibble(!!! columns)
+  tibble::tibble(!!! columns)
 }
