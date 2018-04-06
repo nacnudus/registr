@@ -115,8 +115,8 @@ rr_snapshot.register <- function(register,
     purrr::pmap(list(rlang::syms(fields$field),
                      fields$datatype,
                      fields$cardinality),
-                ~ rlang::expr(apply_datatype(!! ..1, !! ..2, !! ..3,
-                                             !! parse_datetimes)))
+                ~ rlang::expr(rr_apply_datatype(!! ..1, !! ..2, !! ..3,
+                                                !! parse_datetimes)))
   names(converters) <- fields$field
   user_entries <- dplyr::mutate(user_entries, !!! converters)
   list(name = name, custodian = custodian, fields = fields, data = user_entries)

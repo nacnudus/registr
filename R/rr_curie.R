@@ -5,52 +5,53 @@
 #' functions list which registers are linked to by a field or all the fields in
 #' a register.
 #'
-#' [curie_fields()] names which fields in a register are of datatype `"curie"`.
+#' [rr_curie_fields()] names which fields in a register are of datatype
+#' `"curie"`.
 #'
-#' [curie_links()] names which registers are linked to by a field of datatype
+#' [rr_curie_links()] names which registers are linked to by a field of datatype
 #' `"curie"`, or by a whole register that has fields of datatype `"curie"`.
 #'
 #' @param x Object of class `"register"`, or a character vector that is a field
 #' of a register object (`register$data$foo`) of datatype `"curie"`.
 #'
 #' @return A character vector of names of registers that are linked to.
-#' @name curie
+#' @name rr_curie
 #' @examples
 #' register <- rr_register("statistical-geography")
-#' curie_fields(register)
-#' curie_links(register$data$area)
-#' curie_links(register$data$organisation)
-#' curie_links(register)
+#' rr_curie_fields(register)
+#' rr_curie_links(register$data$area)
+#' rr_curie_links(register$data$organisation)
+#' rr_curie_links(register)
 NULL
 
-#' @rdname curie
+#' @rdname rr_curie
 #' @export
-curie_fields <- function(x) {
-  UseMethod("curie_fields")
+rr_curie_fields <- function(x) {
+  UseMethod("rr_curie_fields")
 }
 
-#' @rdname curie
+#' @rdname rr_curie
 #' @export
-curie_fields.register <- function(x) {
+rr_curie_fields.register <- function(x) {
   x$schema$fields %>%
   dplyr::filter(datatype == "curie") %>%
   dplyr::pull(field)
 }
 
-#' @rdname curie
+#' @rdname rr_curie
 #' @export
-curie_links <- function(x) {
-  UseMethod("curie_links")
+rr_curie_links <- function(x) {
+  UseMethod("rr_curie_links")
 }
 
-#' @rdname curie
+#' @rdname rr_curie
 #' @export
-curie_links.default <- function(x) {
+rr_curie_links.default <- function(x) {
   purrr::map(x,
              ~ if (length(.x) > 1) {
-               purrr::map_chr(.x, ~ parse_curie(.x)$prefix)
+               purrr::map_chr(.x, ~ rr_parse_curie(.x)$prefix)
              } else {
-               parse_curie(.x)$prefix
+               rr_parse_curie(.x)$prefix
              }) %>%
     purrr::flatten() %>%
     purrr::discard(is.na) %>%
@@ -59,12 +60,12 @@ curie_links.default <- function(x) {
     sort()
 }
 
-#' @rdname curie
+#' @rdname rr_curie
 #' @export
-curie_links.register <- function(x) {
+rr_curie_links.register <- function(x) {
   x$data %>%
-  dplyr::select(curie_fields(x)) %>%
-  purrr::map(curie_links) %>%
+  dplyr::select(rr_curie_fields(x)) %>%
+  purrr::map(rr_curie_links) %>%
   purrr::flatten_chr() %>%
   unique() %>%
   sort()
