@@ -7,7 +7,7 @@
 #' parse_curie("country:")
 #' parse_curie("country")
 parse_curie <- function(curie) {
-  prefix <- str_extract(curie, "^[^:]+(?=:)")
-  reference <- str_extract(curie, "(?<=:)[^:]+$")
+  prefix <- stringr::str_extract(curie, "^[^:]+(?=:)")
+  reference <- stringr::str_extract(curie, "(?<=:)[^:]+$")
   list(prefix = prefix, reference = reference)
 }
