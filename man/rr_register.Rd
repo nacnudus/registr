@@ -4,11 +4,11 @@
 \alias{rr_register}
 \title{Download a register}
 \usage{
-rr_register(name, phase = c("beta", "alpha"), path_type = c("url", "file"),
+rr_register(file, phase = c("beta", "alpha"), path_type = c("url", "file"),
   parse_datetimes = FALSE)
 }
 \arguments{
-\item{name}{Character, name of the register, e.g. "school-eng"}
+\item{file}{Character, name of the register, e.g. "school-eng"}
 
 \item{phase}{Character, one of "beta", "alpha", default: "beta"}
 
@@ -34,6 +34,10 @@ You should probably run \code{\link[=rr_snapshot]{rr_snapshot()}} on the output 
 \dontrun{
   rr_register("country")
   rr_register("country", "beta")
+  path <- tempfile()
+  download.file("https://country.register.gov.uk/download-rsf", path)
+  rr_register(path, path_type = "file")
+  unlink(path)
 }
 
 

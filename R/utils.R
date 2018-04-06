@@ -49,27 +49,27 @@ blank_tibble <- function(col_names) {
 #' the register and the given phase, or load it from a file containing the RSF
 #' (register serialisation format).
 #'
-#' @param name Character, either the name of the register, or a file path.
+#' @param file Character, either the name of the register, or a file path.
 #' @param phase Character, one of `"beta"` or `"alpha"`
 #' @param path_type Character, one of `"url"` or `"file"` to decide what to do
 #'   with `register`.
-register_lines <- function(name, phase = c("beta", "alpha"),
+register_lines <- function(file, phase = c("beta", "alpha"),
                            path_type = c("url", "file")) {
   path_type <- match.arg(path_type)
   if (path_type == "url") {
     phase <- match.arg(phase)
     register_url <-
       switch(phase,
-             beta = "https://{name}.register.gov.uk/download-rsf",
-             alpha = "https://{name}.{phase}.openregister.org/download-rsf")
+             beta = "https://{file}.register.gov.uk/download-rsf",
+             alpha = "https://{file}.{phase}.openregister.org/download-rsf")
     register_url <- glue::glue(register_url)
-    message("Downloading register '", name,
+    message("Downloading register '", file,
             "' from the '", phase, "' phase ...\n")
     register_path <- tempfile()
     on.exit(unlink(register_path))
     download.file(register_url, register_path)
     return(readr::read_lines(register_path))
   } else if (path_type == "file") {
-    return(readr::read_lines(register))
+    return(readr::read_lines(file))
   }
 }

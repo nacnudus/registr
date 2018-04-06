@@ -6,7 +6,7 @@
 #'
 #'   You should probably run [rr_snapshot()] on the output before using it.
 #'
-#' @param name Character, name of the register, e.g. "school-eng"
+#' @param file Character, name of the register, e.g. "school-eng"
 #' @param phase Character, one of "beta", "alpha", default: "beta"
 #' @param path_type Character, one of `"url"` or `"file"` to decide what to do
 #'   with `register`.
@@ -21,13 +21,17 @@
 #' \dontrun{
 #'   rr_register("country")
 #'   rr_register("country", "beta")
+#'   path <- tempfile()
+#'   download.file("https://country.register.gov.uk/download-rsf", path)
+#'   rr_register(path, path_type = "file")
+#'   unlink(path)
 #' }
 #'
 #'
 #' @export
-rr_register <- function(name, phase = c("beta", "alpha"),
+rr_register <- function(file, phase = c("beta", "alpha"),
                         path_type = c("url", "file"), parse_datetimes = FALSE) {
-  rsf <- register_lines(name, phase, path_type)
+  rsf <- register_lines(file, phase, path_type)
   root_hash <- parse_root_hash(rsf)
   entries <- parse_entries(rsf)
   items <- parse_items(rsf)

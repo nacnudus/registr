@@ -4,11 +4,11 @@
 \alias{register_lines}
 \title{Download or open a register file}
 \usage{
-register_lines(name, phase = c("beta", "alpha"), path_type = c("url",
+register_lines(file, phase = c("beta", "alpha"), path_type = c("url",
   "file"))
 }
 \arguments{
-\item{name}{Character, either the name of the register, or a file path.}
+\item{file}{Character, either the name of the register, or a file path.}
 
 \item{phase}{Character, one of \code{"beta"} or \code{"alpha"}}
 
