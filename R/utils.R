@@ -34,6 +34,8 @@ missing_col_names.data.frame <- function(.data, ...) {
 #'
 #' @details All columns will be `logical` so that they don't disturb exiting
 #'   columns when appended with [dplyr::bind_rows()]`
+#'
+#' @param col_names Character vector of column names
 blank_tibble <- function(col_names) {
   columns <- purrr::map(col_names, ~ rlang::expr(logical()))
   names(columns) <- col_names

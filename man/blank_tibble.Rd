@@ -6,6 +6,9 @@
 \usage{
 blank_tibble(col_names)
 }
+\arguments{
+\item{col_names}{Character vector of column names}
+}
 \description{
 Construct a zero-row tibble with given column names
 }
