@@ -1,13 +1,15 @@
 #' Download a register
 #'
-#' @description Downloads a whole register and constructs an object that can be
-#'   interrogated for its records, entries, items, schema, links to other
-#'   registers, etc.
+#' @description Downloads a whole register (or reads it from a file) and
+#'   constructs an object that can be interrogated for its records, entries,
+#'   items, schema, links to other registers, etc.
 #'
 #'   You should probably run [rr_snapshot()] on the output before using it.
 #'
 #' @param register character, name of the register, e.g. "school-eng"
 #' @param phase character, one of "beta", "alpha", default: "beta"
+#' @param path_type Character, one of `"url"` or `"file"` to decide what to do
+#'   with `register`.
 #'
 #' @return An S3 object of class `register`
 #'
@@ -19,18 +21,9 @@
 #'
 #'
 #' @export
-rr_register <- function(register, phase = "beta") {
-  register_url <-
-    dplyr::if_else(phase == "beta",
-            "https://{register}.register.gov.uk/download-rsf",
-            "https://{register}.{phase}.openregister.org/download-rsf") %>%
-    glue::glue()
-  message("Downloading register '", register,
-          "' from the '", phase, "' phase ...\n")
-  register_path <- tempfile()
-  on.exit(unlink(register_path))
-  download.file(register_url, register_path)
-  rsf <- readr::read_lines(register_path)
+rr_register <- function(register, phase = c("beta", "alpha"),
+                        path_type = c("url", "file"), parse_datetimes = FALSE) {
+  rsf <- register_lines(register, phase, path_type)
   root_hash <- parse_root_hash(rsf)
   entries <- parse_entries(rsf)
   items <- parse_items(rsf)
