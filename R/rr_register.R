@@ -48,7 +48,9 @@ rr_register <- function(file, phase = c("beta", "alpha"),
   fields <-
     system_entries %>%
     dplyr::filter(stringr::str_detect(key, "^field:")) %>%
-    flatten_entries()
+    flatten_entries() %>%
+    dplyr::select(`entry-number`, type, key, timestamp, hash,
+                  field, datatype, phase, register, cardinality, text)
   cardinality_one_fields <-
     fields %>%
     dplyr::filter(cardinality == "1") %>%
