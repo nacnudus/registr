@@ -10,7 +10,8 @@ apply_datatype(x, datatype, apply_iso_8601 = TRUE)
 \item{x}{Character vector (a field of a register).}
 
 \item{datatype}{Name of the datatype to apply: currently one of \code{"curie"}, \code{"url"},
-\code{"datetime"}, \code{"string"}, \code{"integer"} and \code{"text"}.}
+\code{"datetime"}, \code{"string"}, \code{"integer"} and \code{"text"}.  Unrecognised datatypes
+will be returned unaltered.}
 
 \item{apply_iso_8601}{Logical, whether to parse ISO8601 strings as datetimes
 with \code{\link[parsedate:parse_iso_8601]{parsedate::parse_iso_8601()}}, otherwise leave as a string.  Partial

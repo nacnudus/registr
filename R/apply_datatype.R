@@ -5,7 +5,8 @@
 #'
 #' @param x Character vector (a field of a register).
 #' @param datatype Name of the datatype to apply: currently one of `"curie"`, `"url"`,
-#'   `"datetime"`, `"string"`, `"integer"` and `"text"`.
+#'   `"datetime"`, `"string"`, `"integer"` and `"text"`.  Unrecognised datatypes
+#'   will be returned unaltered.
 #' @param apply_iso_8601 Logical, whether to parse ISO8601 strings as datetimes
 #'   with [parsedate::parse_iso_8601()], otherwise leave as a string.  Partial
 #'   datetimes are parsed as the earliest possible datetime, e.g. `"2018"`
