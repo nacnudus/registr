@@ -56,9 +56,11 @@ rr_register <- function(register, phase = "beta") {
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
   converters <-
-    map2(rlang::syms(fields$field),
-         fields$datatype,
-         ~ rlang::expr(apply_datatype(!! .x, !! .y)))
+    purrr::map2(rlang::syms(fields$field),
+                fields$datatype,
+                ~ rlang::expr(apply_datatype(!! .x,
+                                             !! .y,
+                                             apply_iso_8601 = parse_datetimes)))
   names(converters) <- fields$field
   user_entries <- dplyr::mutate(user_entries, !!! converters)
   structure(list(root_hash = root_hash,

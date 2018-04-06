@@ -98,9 +98,9 @@ rr_snapshot.register <- function(register,
     dplyr::select(`entry-number`, type, key, timestamp, hash,
                   unique(fields$field))
   converters <-
-    map2(rlang::syms(fields$field),
-         fields$datatype,
-         ~ rlang::expr(apply_datatype(!! .x, !! .y)))
+    purrr::map2(rlang::syms(fields$field),
+                fields$datatype,
+                ~ rlang::expr(apply_datatype(!! .x, !! .y, parse_datetimes)))
   names(converters) <- fields$field
   user_entries <- dplyr::mutate(user_entries, !!! converters)
   list(name = name, custodian = custodian, fields = fields, data = user_entries)
