@@ -16,10 +16,9 @@
 #' @return An S3 object of class `register`
 #'
 #' @examples
-#' \dontrun{
-#'   rr_registers("beta")
-#' }
-#'
+#' path <- tempdir()
+#' names(rr_registers("beta", write = TRUE, dest_dir = path))
+#' names(rr_registers(dir = "beta"))
 #' @export
 rr_registers <- function(phase = c("beta", "alpha"),
                          dir = NULL,
