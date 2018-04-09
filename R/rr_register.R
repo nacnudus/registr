@@ -15,16 +15,12 @@
 #' @return An S3 object of class `register`
 #'
 #' @examples
-#' \dontrun{
-#'   rr_register("country")
-#'   rr_register("country", "beta")
-#'   path <- tempfile()
-#'   download.file("https://country.register.gov.uk/download-rsf", path)
-#'   rr_register(path, path_type = "file")
-#'   unlink(path)
-#' }
-#'
-#'
+#' rr_register("country")
+#' rr_register("country", "beta")
+#' path <- tempfile()
+#' download.file("https://country.register.gov.uk/download-rsf", path)
+#' rr_register(file = path)
+#' unlink(path)
 #' @export
 rr_register <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
                         write = FALSE, dest_path = NULL,

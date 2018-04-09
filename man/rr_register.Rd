@@ -36,14 +36,10 @@ items, schema, links to other registers, etc.
 You should probably run \code{\link[=rr_snapshot]{rr_snapshot()}} on the output before using it.
 }
 \examples{
-\dontrun{
-  rr_register("country")
-  rr_register("country", "beta")
-  path <- tempfile()
-  download.file("https://country.register.gov.uk/download-rsf", path)
-  rr_register(path, path_type = "file")
-  unlink(path)
-}
-
-
+rr_register("country")
+rr_register("country", "beta")
+path <- tempfile()
+download.file("https://country.register.gov.uk/download-rsf", path)
+rr_register(file = path)
+unlink(path)
 }
