@@ -6,14 +6,11 @@
 #'
 #'   You should probably run [rr_snapshot()] on the output before using it.
 #'
-#' @param file Character, name of the register, e.g. "school-eng"
-#' @param phase Character, one of "beta", "alpha", default: "beta"
-#' @param path_type Character, one of `"url"` or `"file"` to decide what to do
-#'   with `register`.
 #' @param parse_datetimes Logical, whether to parse ISO8601 strings as datetimes
 #'   with [parsedate::parse_iso_8601()], otherwise leave as a string.  Partial
 #'   datetimes are parsed as the earliest possible datetime, e.g. `"2018"`
 #'   becomes `"2018-01-01 UTC"`.
+#' @inheritParams rr_rsf
 #'
 #' @return An S3 object of class `register`
 #'
@@ -29,9 +26,10 @@
 #'
 #'
 #' @export
-rr_register <- function(file, phase = c("beta", "alpha"),
-                        path_type = c("url", "file"), parse_datetimes = FALSE) {
-  rsf <- register_lines(file, phase, path_type)
+rr_register <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
+                        write = FALSE, dest_path = NULL,
+                        parse_datetimes = FALSE) {
+  rsf <- rr_rsf(name, phase, file, write, dest_path)
   root_hash <- parse_root_hash(rsf)
   entries <- parse_entries(rsf)
   items <- parse_items(rsf)

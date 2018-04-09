@@ -4,16 +4,21 @@
 \alias{rr_register}
 \title{Download a register}
 \usage{
-rr_register(file, phase = c("beta", "alpha"), path_type = c("url", "file"),
-  parse_datetimes = FALSE)
+rr_register(name = NULL, phase = c("beta", "alpha"), file = NULL,
+  write = FALSE, dest_path = NULL, parse_datetimes = FALSE)
 }
 \arguments{
-\item{file}{Character, name of the register, e.g. "school-eng"}
+\item{name}{Character, the name of the register.}
 
-\item{phase}{Character, one of "beta", "alpha", default: "beta"}
+\item{phase}{Character, one of \code{"beta"} or \code{"alpha"}}
 
-\item{path_type}{Character, one of \code{"url"} or \code{"file"} to decide what to do
-with \code{register}.}
+\item{file}{Character, file path or URL, passed on to \code{\link[readr:read_lines]{readr::read_lines()}}
+if \code{name} is not provided.}
+
+\item{write}{Logical, whether to write the RSF file to disk.  If \code{TRUE},
+either \code{name} or \code{dest_path} must be provided.}
+
+\item{dest_path}{Character, path and file name to write the RSF to.}
 
 \item{parse_datetimes}{Logical, whether to parse ISO8601 strings as datetimes
 with \code{\link[parsedate:parse_iso_8601]{parsedate::parse_iso_8601()}}, otherwise leave as a string.  Partial
