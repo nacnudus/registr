@@ -1,12 +1,13 @@
 #' Apply registers-style datatypes to fields
 #'
-#' @details Registers use their own datatypes. This function converts character
-#' vectors to the equivalent R datatypes, handling cardinality='n'.
+#' @description
+#' Registers use their own datatypes. This function converts character vectors
+#'   to the equivalent R datatypes, handling cardinality='n'.
 #'
 #' @param x Character vector (a field of a register).
-#' @param datatype Name of the datatype to apply: currently one of `"curie"`, `"url"`,
-#'   `"datetime"`, `"string"`, `"integer"` and `"text"`.  Unrecognised datatypes
-#'   will be returned unaltered.
+#' @param datatype Name of the datatype to apply: currently one of `"curie"`,
+#'   `"url"`, `"datetime"`, `"string"`, `"integer"` and `"text"`.  Unrecognised
+#'   datatypes will be returned unaltered.
 #' @param cardinality Character, one of `"1"` and `"n"` to say whether each
 #'   element of `x` contains multiple values separated by semicolons.
 #' @param apply_iso_8601 Logical, whether to parse ISO8601 strings as datetimes

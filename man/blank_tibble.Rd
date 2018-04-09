@@ -10,9 +10,6 @@ blank_tibble(col_names)
 \item{col_names}{Character vector of column names}
 }
 \description{
-Construct a zero-row tibble with given column names
-}
-\details{
-All columns will be \code{logical} so that they don't disturb exiting
-columns when appended with \code{\link[dplyr:bind_rows]{dplyr::bind_rows()}}`
+All columns will be \code{logical} so that they don't disturb existing columns
+when appended with \code{\link[dplyr:bind_rows]{dplyr::bind_rows()}}`
 }

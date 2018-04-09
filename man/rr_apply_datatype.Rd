@@ -22,11 +22,8 @@ datetimes are parsed as the earliest possible datetime, e.g. \code{"2018"}
 becomes \code{"2018-01-01 UTC"}.}
 }
 \description{
-Apply registers-style datatypes to fields
-}
-\details{
-Registers use their own datatypes. This function converts character
-vectors to the equivalent R datatypes, handling cardinality='n'.
+Registers use their own datatypes. This function converts character vectors
+to the equivalent R datatypes, handling cardinality='n'.
 }
 \examples{
 rr_apply_datatype("2014-04", "datetime")

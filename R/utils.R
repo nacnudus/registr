@@ -33,8 +33,9 @@ missing_col_names.data.frame <- function(.data, ...) {
 
 #' Construct a zero-row tibble with given column names
 #'
-#' @details All columns will be `logical` so that they don't disturb exiting
-#'   columns when appended with [dplyr::bind_rows()]`
+#' @description
+#' All columns will be `logical` so that they don't disturb existing columns
+#' when appended with [dplyr::bind_rows()]`
 #'
 #' @param col_names Character vector of column names
 blank_tibble <- function(col_names) {
