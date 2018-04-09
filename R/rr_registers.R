@@ -44,12 +44,12 @@ rr_registers <- function(phase = c("beta", "alpha"),
     names(registers) <- register_names
   } else {
     paths <- fs::dir_ls(dir)
+    register_names <- stringr::str_replace(basename(paths), "\\.rsf$", "")
     dest_paths <- fs::path(dest_dir, paste0(register_names, ".rsf"))
     registers <- purrr::map2(paths, dest_paths,
                              ~ rr_register(file = .x, phase = phase,
                                            parse_datetimes = parse_datetimes,
                                            write = write, dest_path = .y))
-    register_names <- stringr::str_replace(basename(paths), "\\.rsf$", "")
     names(registers) <- register_names
   }
   registers
