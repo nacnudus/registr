@@ -31,8 +31,8 @@ fields in a register.
 \code{\link[=rr_key_fields]{rr_key_fields()}} names which fields in a register have the \code{"register"}
 properety.
 
-\code{\link[=rr_key_links]{rr_key_links()}} names which registers are linked to by a register that has
-fields with the \code{"register"} property.
+\code{\link[=rr_key_links]{rr_key_links()}} names all fields in a register that have the \code{"register"}
+property, and the name of the register each one links to.
 }
 \examples{
 register <- rr_register("allergen")

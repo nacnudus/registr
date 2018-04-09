@@ -9,12 +9,12 @@
 #' `"curie"`.
 #'
 #' [rr_curie_links()] names which registers are linked to by a field of datatype
-#' `"curie"`, or by a whole register that has fields of datatype `"curie"`.
+#' `"curie"`, or gives a data frame of all fields in a register that are of
+#' datatype `"curie"`, and the names of the registers they link to.
 #'
 #' @param x Object of class `"register"`, or a character vector that is a field
 #' of a register object (`register$data$foo`) of datatype `"curie"`.
 #'
-#' @return A character vector of names of registers that are linked to.
 #' @name rr_curie
 #' @examples
 #' register <- rr_register("statistical-geography")
@@ -63,10 +63,12 @@ rr_curie_links.default <- function(x) {
 #' @rdname rr_curie
 #' @export
 rr_curie_links.register <- function(x) {
+  curie_fields <- rr_curie_fields(x)
   x$data %>%
-  dplyr::select(rr_curie_fields(x)) %>%
+  dplyr::select(curie_fields) %>%
   purrr::map(rr_curie_links) %>%
-  purrr::flatten_chr() %>%
-  unique() %>%
-  sort()
+  purrr::map2_dfr(curie_fields, ~ tibble::tibble(field = .y, register = .x)) %>%
+  dplyr::distinct() %>%
+  dplyr::arrange() %>%
+  dplyr::bind_rows(tibble::tibble(field = character(), register = character()))
 }

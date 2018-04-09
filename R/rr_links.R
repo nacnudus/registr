@@ -27,11 +27,20 @@
 #'       geom_edge_loop() +
 #'       geom_node_label(aes(label = name))
 #'
-#'   as_tbl_graph(rr_links(rr_registers())) %>%
+#'   edge_arrow <- arrow(length = unit(4, "mm"), type = "closed")
+#'   rr_links(rr_registers()) %>%
+#'     dplyr::distinct(from, to, type) %>%
+#'     as_tbl_graph() %>%
 #'     ggraph(layout = "nicely") +
-#'       geom_edge_fan(aes(alpha = ..index..), show.legend = FALSE) +
-#'       geom_edge_loop() +
-#'       geom_node_label(aes(label = name))
+#'       geom_node_point() +
+#'       geom_edge_fan(aes(colour = type),
+#'                     arrow = edge_arrow,
+#'                     end_cap = circle(2, 'mm')) +
+#'       geom_edge_loop(aes(colour = type),
+#'                      arrow = edge_arrow,
+#'                      end_cap = circle(2, 'mm')) +
+#'       geom_node_label(aes(label = name), repel = TRUE, alpha = .5) +
+#'       theme_void()
 #' }
 rr_links <- function(x) {
   UseMethod("rr_links")
@@ -42,10 +51,11 @@ rr_links.register <- function(x) {
   name <- rr_snapshot(x)$schema$names$name
   key_links <- rr_key_links(x)
   curie_links <- rr_curie_links(x)
-  dplyr::bind_rows(
-    tibble::tibble(from = name, to = key_links, type = "key"),
-    tibble::tibble(from = name, to = curie_links, type = "curie")
-    )
+  dplyr::bind_rows(dplyr::mutate(key_links, type = "key"),
+                   dplyr::mutate(curie_links, type = "curie")) %>%
+  dplyr::mutate(from = name) %>%
+  dplyr::rename(to = register) %>%
+  dplyr::select(from, to, type, field)
 }
 
 #' @export

@@ -23,9 +23,6 @@ rr_curie_links(x)
 \item{x}{Object of class \code{"register"}, or a character vector that is a field
 of a register object (\code{register$data$foo}) of datatype \code{"curie"}.}
 }
-\value{
-A character vector of names of registers that are linked to.
-}
 \description{
 Values in fields of datatype \code{"curie"} link to other registers.  These
 functions list which registers are linked to by a field or all the fields in
@@ -35,7 +32,8 @@ a register.
 \code{"curie"}.
 
 \code{\link[=rr_curie_links]{rr_curie_links()}} names which registers are linked to by a field of datatype
-\code{"curie"}, or by a whole register that has fields of datatype \code{"curie"}.
+\code{"curie"}, or gives a data frame of all fields in a register that are of
+datatype \code{"curie"}, and the names of the registers they link to.
 }
 \examples{
 register <- rr_register("statistical-geography")

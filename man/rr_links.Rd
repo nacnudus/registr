@@ -33,10 +33,19 @@ if (require(tidygraph)) {
       geom_edge_loop() +
       geom_node_label(aes(label = name))
 
-  as_tbl_graph(rr_links(rr_registers())) \%>\%
+  edge_arrow <- arrow(length = unit(4, "mm"), type = "closed")
+  rr_links(rr_registers()) \%>\%
+    dplyr::distinct(from, to, type) \%>\%
+    as_tbl_graph() \%>\%
     ggraph(layout = "nicely") +
-      geom_edge_fan(aes(alpha = ..index..), show.legend = FALSE) +
-      geom_edge_loop() +
-      geom_node_label(aes(label = name))
+      geom_node_point() +
+      geom_edge_fan(aes(colour = type),
+                    arrow = edge_arrow,
+                    end_cap = circle(2, 'mm')) +
+      geom_edge_loop(aes(colour = type),
+                     arrow = edge_arrow,
+                     end_cap = circle(2, 'mm')) +
+      geom_node_label(aes(label = name), repel = TRUE, alpha = .5) +
+      theme_void()
 }
 }

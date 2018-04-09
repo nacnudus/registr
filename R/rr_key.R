@@ -8,8 +8,8 @@
 #' [rr_key_fields()] names which fields in a register have the `"register"`
 #' properety.
 #'
-#' [rr_key_links()] names which registers are linked to by a register that has
-#' fields with the `"register"` property.
+#' [rr_key_links()] names all fields in a register that have the `"register"`
+#' property, and the name of the register each one links to.
 #'
 #' @param x Object of class `"register"`, or a character vector that is a field
 #' of a register object (`register$data$foo`) with the `"register"` property.
@@ -47,6 +47,5 @@ rr_key_links <- function(x) {
 rr_key_links.register <- function(x) {
   x$schema$fields %>%
   dplyr::filter(!is.na(register), !(register == field)) %>%
-  dplyr::pull(register) %>%
-  unique()
+  dplyr::distinct(field, register)
 }
