@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #' rr_apply_datatype("2014-04", "datetime")
-rr_apply_datatype <- function(x, datatype, cardinality, apply_iso_8601 = TRUE) {
+rr_apply_datatype <- function(x, datatype, cardinality = 1, apply_iso_8601 = TRUE) {
   if (cardinality == "n") {
     out <- switch(datatype,
                   curie = purrr::map(x, as.character),

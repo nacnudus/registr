@@ -4,7 +4,7 @@
 \alias{rr_apply_datatype}
 \title{Apply registers-style datatypes to fields}
 \usage{
-rr_apply_datatype(x, datatype, cardinality, apply_iso_8601 = TRUE)
+rr_apply_datatype(x, datatype, cardinality = 1, apply_iso_8601 = TRUE)
 }
 \arguments{
 \item{x}{Character vector (a field of a register).}
