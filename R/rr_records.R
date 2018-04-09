@@ -29,31 +29,34 @@
 #' `entry-number` will be chosen.
 #'
 #' @examples
-#' \dontrun{
-#' if(interactive()){
 #' country <- rr_register("country")
 #'
-#' country$data$entries %>%
+#' # There can be more than one entry per key
+#' country$data %>%
 #'   filter(key == "CZ") %>%
 #'   select(`entry-number`, timestamp, name, `official-name`)
 #'
-#' country$data$entries %>%
+#' # Snapshot by entry number
+#' country$data %>%
 #'   rr_records(maximum = 64) %>%
 #'   filter(key == "CZ") %>%
 #'   select(`entry-number`, timestamp, name, `official-name`)
 #'
-#' country$data$entries %>%
+#' country$data %>%
 #'   rr_records(maximum = 217, include_maximum = FALSE) %>%
 #'   filter(key == "CZ") %>%
 #'   select(`entry-number`, timestamp, name, `official-name`)
 #'
-#' country$data$entries %>%
+#' # Snapshot by entry timestamp
+#' country$data %>%
 #'   rr_records(sequence = "timestamp",
 #'              maximum = as.POSIXct("2016-04-05 13:23:05", tz = "UTC")) %>%
 #'   filter(key == "CZ") %>%
 #'   select(`entry-number`, timestamp, name, `official-name`)
 #'
-#' entries <- country$data$entries
+#' # When the timestamp of any entry of a key is missing, no entries are
+#' # returned.
+#' entries <- country$data
 #' entries$timestamp[entries$`entry-number` == 64] <- NA
 #' rr_records(entries, sequence = "timestamp") %>%
 #'   filter(key == "CZ")
@@ -62,8 +65,6 @@
 #' country$schema$custodians %>%
 #'   rr_records(maximum = 11) %>%
 #'   select(`entry-number`, timestamp, custodian)
-#'  }
-#' }
 #' @rdname rr_records
 #' @export
 rr_records <- function(entries, sequence = c("entry-number", "timestamp"),
