@@ -14,61 +14,151 @@ knitr::opts_chunk$set(
 
 # RegistersClientR
 
-This package is a very basic wrapper for the
+This package doesn't really wrap the
 [registers](https://registers.cloudapps.digital/)
 [API](https://registers-docs.cloudapps.digital/#api-documentation-for-registers).
+Instead, it downloads the 'raw' registers in RSF (Register Serialisation
+Format), and parses that.
 
 Registers are authoritative lists of things, built and maintained by the UK
 government, for example, the `country` register is a list of countries.
 
-A single function `get_all_records()` is provided, which downloads all the
-records of a register into a tibble.  This saves you from manually handling the
-paged download interface of large registers.
-
 ## Installation
 
-```r
+```{r, eval = FALSE}
 # install.packages("devtools") # if you don't already have devtools installed
 devtools::install_github("openregister/RegistersClientR")
 ```
 
-## Example
+To install a very early version of the package for running old scripts:
 
-You can download registers with `rr_records()`.  All functions names will use
-the prefix `rr_*`.
-
-```{r country}
-library(RegistersClientR)
-rr_records("country")
+```{r, eval = FALSE}
+devtools::install_github("openregister/RegistersClientR",
+                         ref = "08c42c95bc65a0cb8131100416a372660b8a1bd5")
 ```
 
-By default, the 'beta' version of the register is downloaded.  If you need
-another version -- usually when the register is still in discovery or alpha,
-then specify the phase.
-
-```r
-rr_records("country", "alpha")
-```
-
-The default page size is 5000, which is the current maximum supported by the
-API, and is sufficient to download most registers in one page.  But to show that
-multiple pages are handled, you can specify a smaller page size.
-
-```{r, page_size}
-rr_records("country", page_size = 10)
-```
-
-To run 'silently' without showing the progress bar, you need both
-`suppressMessages` and to set a `dplyr` option.
+## Examples
 
 ```{r}
-options("dplyr.show_progress" = FALSE)
-suppressMessages(rr_records("country", "beta"))
+library(RegistersClientR)
 ```
 
-## Data types
+### Download registers
 
-Each page is imported with character data types first, then combined, and
-finally converted to (hopefully) appropriate data types by
-`readr::parse_guess()`.  This avoids any problem with fields in the first page
-not being representative of later pages.
+Download a single register.
+
+```{r}
+rr_register("country")
+```
+
+Download all registers.
+
+```{r}
+registers <- rr_registers()
+names(registers)
+```
+
+By default, the 'beta' ('ready to use') versions of registers are downloaded.
+If you need alpha ('open for feedback') registers, use `phase = "alpha")`
+
+### Explore register schema and data
+
+The schema and data are in `$shema` and `$data`.
+
+```{r}
+country <- registers$country
+country$schema
+country$data
+```
+
+You probably want to take a snapshot first.  This will take the latest version
+of the schema, and the latest version of each record (e.g. the most recent name
+of a country)
+
+```{r}
+country$schema$custodian
+rr_snapshot(country)$schema$custodian
+```
+
+Each field of each entry can contain more than one value, if the field has the
+property `cardinality = 'n'`.  In this case, the field is a list-column, where
+each value is a vector of values.
+
+### Linked registers
+
+Registers link in two ways.
+
+* Via a field with the `"register"` property set in the schema.  This is like a
+  foreign/primary key relationship in a relational database.
+* Via CURIEs of the form `"prefix:reference"`, where `prefix` is the name of
+  a register, and `reference` is a value in the primary field of that register
+  (the field with the same name as the register).
+
+```{r}
+rr_links(registers$`statistical-geography`)
+```
+
+Resolve links with the `rr_resolve_*()` family of functions.  Because links
+refer to whole records, whole records are returned in a list-column of data
+frames.
+
+If a matching record has multiple entries, every entry is returned in a
+multi-row data frame.
+
+If a linking field is `cardinality = 'n'`, a list of data frames is returned.
+
+```{r}
+rr_resolve_links(registers$`statistical-geography`, registers)$data
+```
+
+You can resolve to only the latest entry of each record by creating a
+`registers` object with snapshots.
+
+```{r}
+registers_snapshot <- purrr::map(registers, rr_snapshot)
+rr_resolve_links(registers$`statistical-geography`, registers_snapshot)$data
+```
+
+Plot the links between registers with something like the `ggraph` package.
+
+```{r}
+library(tidygraph)
+library(ggraph)
+
+registers$`statistical-geography` %>%
+  rr_links() %>%
+  as_tbl_graph() %>%
+  ggraph(layout = "nicely") +
+    geom_edge_fan(aes(alpha = ..index..), show.legend = FALSE) +
+    geom_edge_loop() +
+    geom_node_label(aes(label = name)) +
+    theme_void()
+
+edge_arrow <- arrow(length = unit(4, "mm"), type = "closed")
+registers %>%
+  rr_links() %>%
+  dplyr::distinct(from, to, type) %>%
+  as_tbl_graph() %>%
+  ggraph(layout = "nicely") +
+    geom_node_point() +
+    geom_edge_fan(aes(colour = type),
+                  arrow = edge_arrow,
+                  end_cap = circle(2, 'mm')) +
+    geom_edge_loop(aes(colour = type),
+                   arrow = edge_arrow,
+                   end_cap = circle(2, 'mm')) +
+    geom_node_label(aes(label = name), repel = TRUE, alpha = .5) +
+    theme_void()
+```
+
+### Index registers
+
+You can index registers by any column, using CURIE-like syntax.
+
+```{r}
+country <- registers$country
+rr_index(country, "start-date")
+rr_index(country, "end-date")
+rr_index(country)
+rr_index(rr_register("local-authority-eng"), "local-authority-type")
+```
