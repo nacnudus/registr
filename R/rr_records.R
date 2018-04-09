@@ -83,7 +83,7 @@ rr_records <- function(entries, sequence = c("entry-number", "timestamp"),
   if (include_maximum) `%</=%` <- `<=` else `%</=%` <- `<`
   entries %>%
     dplyr::filter(!! seq_sym %</=% maximum) %>%
-    dplyr::group_by(key) %>%
+    dplyr::group_by(type, key) %>%
     dplyr::arrange(desc(!! seq_sym), desc(`entry-number`)) %>%
     dplyr::slice(1L) %>%
     dplyr::ungroup() %>%
