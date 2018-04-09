@@ -10,6 +10,7 @@ LazyData: true
 RoxygenNote: 6.0.1
 Imports: dplyr,
     glue,
+    fs,
     jsonlite,
     magrittr,
     purrr,
@@ -20,4 +21,6 @@ Imports: dplyr,
     rlang,
     parsedate,
     stringr
+Suggests: tidygraph,
+    ggraph
 Roxygen: list(markdown = TRUE)
