@@ -9,9 +9,9 @@ rr_apply_datatype(x, datatype, cardinality, apply_iso_8601 = TRUE)
 \arguments{
 \item{x}{Character vector (a field of a register).}
 
-\item{datatype}{Name of the datatype to apply: currently one of \code{"curie"}, \code{"url"},
-\code{"datetime"}, \code{"string"}, \code{"integer"} and \code{"text"}.  Unrecognised datatypes
-will be returned unaltered.}
+\item{datatype}{Name of the datatype to apply: currently one of \code{"curie"},
+\code{"url"}, \code{"datetime"}, \code{"string"}, \code{"integer"} and \code{"text"}.  Unrecognised
+datatypes will be returned unaltered.}
 
 \item{cardinality}{Character, one of \code{"1"} and \code{"n"} to say whether each
 element of \code{x} contains multiple values separated by semicolons.}
