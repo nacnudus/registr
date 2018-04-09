@@ -20,23 +20,23 @@
 rr_apply_datatype <- function(x, datatype, cardinality, apply_iso_8601 = TRUE) {
   if (cardinality == "n") {
     out <- switch(datatype,
-                  curie = x,
-                  url = x,
+                  curie = purrr::map(x, as.character),
+                  url = purrr::map(x, as.character),
                   datetime = purrr::map(x,
                                         maybe_parse_iso_8601,
                                         parse = apply_iso_8601),
-                  string = x,
+                  string = purrr::map(x, as.character),
                   integer = purrr::map(x, as.integer),
-                  text = x)
+                  text = purrr::map(x, as.character))
     return(out)
   }
   switch(datatype,
-         curie = x,
-         url = x,
+         curie = as.character(x),
+         url = as.character(x),
          datetime = maybe_parse_iso_8601(x, apply_iso_8601),
-         string = x,
+         string = as.character(x),
          integer = as.integer(x),
-         text = x)
+         text = as.character(x))
 }
 
 #' Parse ISO8601 strings as datetimes or characters
