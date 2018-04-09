@@ -18,7 +18,7 @@
 #' rr_index(country, "start-date")
 #' rr_index(country, "end-date")
 #' rr_index(country)
-#' rr_index(sg, "area")
+#' rr_index(rr_register("local-authority-eng"), "local-authority-type")
 rr_index <- function(register, key = NULL) {
   snapshot <- rr_snapshot(register)
   .register_name <- snapshot$schema$names$name
