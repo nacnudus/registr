@@ -31,7 +31,8 @@ if (require(tidygraph)) {
     ggraph(layout = "nicely") +
       geom_edge_fan(aes(alpha = ..index..), show.legend = FALSE) +
       geom_edge_loop() +
-      geom_node_label(aes(label = name))
+      geom_node_label(aes(label = name)) +
+      theme_void()
 
   edge_arrow <- arrow(length = unit(4, "mm"), type = "closed")
   rr_links(rr_registers()) \%>\%
