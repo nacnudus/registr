@@ -45,40 +45,12 @@ If the \code{timestamp} is not unique, then the entry with the maximum
 \code{entry-number} will be chosen.
 }
 \examples{
-\dontrun{
-if(interactive()){
 country <- rr_register("country")
+snapshot <- rr_snapshot(country)
 
-country$data$entries \%>\%
-  filter(key == "CZ") \%>\%
-  select(`entry-number`, timestamp, name, `official-name`)
+nrow(country$data)
+nrow(snapshot$data)
 
-country$data$entries \%>\%
-  rr_records(maximum = 64) \%>\%
-  filter(key == "CZ") \%>\%
-  select(`entry-number`, timestamp, name, `official-name`)
-
-country$data$entries \%>\%
-  rr_records(maximum = 217, include_maximum = FALSE) \%>\%
-  filter(key == "CZ") \%>\%
-  select(`entry-number`, timestamp, name, `official-name`)
-
-country$data$entries \%>\%
-  rr_records(sequence = "timestamp",
-             maximum = as.POSIXct("2016-04-05 13:23:05", tz = "UTC")) \%>\%
-  filter(key == "CZ") \%>\%
-  select(`entry-number`, timestamp, name, `official-name`)
-
-entries <- country$data$entries
-entries$timestamp[entries$`entry-number` == 64] <- NA
-rr_records(entries, sequence = "timestamp") \%>\%
-  filter(key == "CZ")
-
-# Not all entries are data, some are schema
-country$schema$custodians \%>\%
-  rr_records(maximum = 11) \%>\%
-  select(`entry-number`, timestamp, custodian)
- }
-}
-
+country$schema$custodian
+snapshot$schema$custodian
 }
