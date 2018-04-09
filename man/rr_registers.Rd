@@ -38,5 +38,5 @@ read them from disk.
 \examples{
 path <- tempdir()
 names(rr_registers("beta", write = TRUE, dest_dir = path))
-names(rr_registers(dir = "beta"))
+names(rr_registers(dir = path))
 }
