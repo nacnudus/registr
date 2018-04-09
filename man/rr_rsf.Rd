@@ -26,7 +26,5 @@ constructing the URL from the name of the register and the given phase, or
 reads it from disk.  Optionally saves it to disk.
 }
 \examples{
-\dontrun{
-  rr_rsf("country")
-}
+rr_rsf("country")
 }

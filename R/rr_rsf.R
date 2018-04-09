@@ -10,14 +10,12 @@
 #' @param file Character, file path or URL, passed on to [readr::read_lines()]
 #'   if `name` is not provided.
 #' @param write Logical, whether to write the RSF file to disk.  If `TRUE`,
-#' either `name` or `dest_path` must be provided.
+#'   either `name` or `dest_path` must be provided.
 #' @param dest_path Character, path and file name to write the RSF to.
 #'
 #' @export
 #' @examples
-#' \dontrun{
-#'   rr_rsf("country")
-#' }
+#' rr_rsf("country")
 rr_rsf <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
                    write = FALSE, dest_path = NULL) {
   phase <- match.arg(phase)
