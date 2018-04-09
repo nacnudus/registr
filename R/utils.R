@@ -16,6 +16,16 @@ globalVariables(c("data",
                   "timestamp",
                   "type",
                   "unnest",
+                  "datatype",
+                  "field",
+                  ".x",
+                  ":=",
+                  ".curie",
+                  "register",
+                  "from",
+                  "to",
+                  "cardinality",
+                  "text",
                   "."))
 
 #' Return column names missing from a data frame
