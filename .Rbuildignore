@@ -2,4 +2,4 @@
 ^temp\.R$
 ^README\.Rmd$
 ^README-.*\.png$
-^temp\.rsf$
+^beta$
