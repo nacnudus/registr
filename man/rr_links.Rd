@@ -26,8 +26,10 @@ rr_links(allergen)
 registers <- rr_registers()
 rr_links(registers)
 
-if (require(tidygraph)) {
-  as_tbl_graph(rr_links(rr_register("statistical-geography"))) \%>\%
+if (require(tidygraph) && require(ggraph)) {
+  rr_register("statistical-geography") \%>\%
+  rr_links() \%>\%
+  as_tbl_graph() \%>\%
     ggraph(layout = "nicely") +
       geom_edge_fan(aes(alpha = ..index..), show.legend = FALSE) +
       geom_edge_loop() +
@@ -35,7 +37,8 @@ if (require(tidygraph)) {
       theme_void()
 
   edge_arrow <- arrow(length = unit(4, "mm"), type = "closed")
-  rr_links(rr_registers()) \%>\%
+  registers \%>\%
+    rr_links() \%>\%
     dplyr::distinct(from, to, type) \%>\%
     as_tbl_graph() \%>\%
     ggraph(layout = "nicely") +
