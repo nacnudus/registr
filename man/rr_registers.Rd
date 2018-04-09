@@ -36,7 +36,7 @@ Unlike \code{\link[=rr_register]{rr_register()}} this function only downloads re
 read them from disk.
 }
 \examples{
-path <- tempdir()
+path <- fs::path(tempdir(), "beta")
 names(rr_registers("beta", write = TRUE, dest_dir = path))
 names(rr_registers(dir = path))
 }

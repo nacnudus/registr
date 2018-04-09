@@ -16,7 +16,7 @@
 #' @return An S3 object of class `register`
 #'
 #' @examples
-#' path <- tempdir()
+#' path <- fs::path(tempdir(), "beta")
 #' names(rr_registers("beta", write = TRUE, dest_dir = path))
 #' names(rr_registers(dir = path))
 #' @export
