@@ -49,13 +49,13 @@ library(RegistersClientR)
 Download a single register.
 
 ```{r}
-rr_register("country")
+country <- rr_register("country")
 ```
 
 Download all registers.
 
 ```{r}
-registers <- rr_registers()
+registers <- rr_registers(quiet = TRUE)
 names(registers)
 ```
 

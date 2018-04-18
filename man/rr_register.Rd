@@ -5,7 +5,8 @@
 \title{Download a register}
 \usage{
 rr_register(name = NULL, phase = c("beta", "alpha"), file = NULL,
-  write = FALSE, dest_path = NULL, parse_datetimes = FALSE)
+  write = FALSE, dest_path = NULL, parse_datetimes = FALSE,
+  quiet = TRUE)
 }
 \arguments{
 \item{name}{Character, the name of the register.}
@@ -24,6 +25,8 @@ either \code{name} or \code{dest_path} must be provided.}
 with \code{\link[parsedate:parse_iso_8601]{parsedate::parse_iso_8601()}}, otherwise leave as a string.  Partial
 datetimes are parsed as the earliest possible datetime, e.g. \code{"2018"}
 becomes \code{"2018-01-01 UTC"}.}
+
+\item{quiet}{Logical, if \code{TRUE} does not print messages to the console.}
 }
 \value{
 An S3 object of class \code{register}

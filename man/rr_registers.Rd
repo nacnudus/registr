@@ -5,7 +5,8 @@
 \title{Download all registers from an environment}
 \usage{
 rr_registers(phase = c("beta", "alpha"), dir = NULL,
-  parse_datetimes = FALSE, write = FALSE, dest_dir = phase)
+  parse_datetimes = FALSE, write = FALSE, dest_dir = phase,
+  quiet = TRUE)
 }
 \arguments{
 \item{phase}{Character, one of \code{"beta"} or \code{"alpha"}}
@@ -23,6 +24,8 @@ either \code{name} or \code{dest_path} must be provided.}
 
 \item{dest_dir}{Character, name of a directory to save the RSF file of each
 register to.  The file names will be the names of the registers.}
+
+\item{quiet}{Logical, if \code{TRUE} does not print messages to the console.}
 }
 \value{
 An S3 object of class \code{register}

@@ -23,11 +23,12 @@
 rr_registers <- function(phase = c("beta", "alpha"),
                          dir = NULL,
                          parse_datetimes = FALSE, write = FALSE,
-                         dest_dir = phase) {
+                         dest_dir = phase,
+                         quiet = TRUE) {
   phase <- match.arg(phase)
   if (is.null(dir)) {
     register_names <-
-      rr_register("register", phase) %>%
+      rr_register("register", phase, quiet = quiet) %>%
       rr_snapshot() %>%
       purrr::pluck("data") %>%
       dplyr::pull(register)
@@ -39,7 +40,7 @@ rr_registers <- function(phase = c("beta", "alpha"),
     registers <-
       purrr::map2(register_names, dest_path,
                  ~ rr_register(.x, phase = phase, write = write,
-                               dest_path = .y))
+                               dest_path = .y, quiet = quiet))
     names(registers) <- register_names
   } else {
     paths <- fs::dir_ls(dir)
@@ -48,7 +49,8 @@ rr_registers <- function(phase = c("beta", "alpha"),
     registers <- purrr::map2(paths, dest_paths,
                              ~ rr_register(file = .x, phase = phase,
                                            parse_datetimes = parse_datetimes,
-                                           write = write, dest_path = .y))
+                                           write = write, dest_path = .y,
+                                           quiet = quiet))
     names(registers) <- register_names
   }
   registers

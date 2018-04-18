@@ -5,7 +5,7 @@
 \title{Download a register RSF file}
 \usage{
 rr_rsf(name = NULL, phase = c("beta", "alpha"), file = NULL,
-  write = FALSE, dest_path = NULL, quietly = FALSE)
+  write = FALSE, dest_path = NULL, quiet = FALSE)
 }
 \arguments{
 \item{name}{Character, the name of the register.}
@@ -20,7 +20,7 @@ either \code{name} or \code{dest_path} must be provided.}
 
 \item{dest_path}{Character, path and file name to write the RSF to.}
 
-\item{quietly}{Logical, if \code{TRUE} does not print messages to the console.}
+\item{quiet}{Logical, if \code{TRUE} does not print messages to the console.}
 }
 \description{
 Either downloads the Register Serialisation Format (RSF) file of a register,

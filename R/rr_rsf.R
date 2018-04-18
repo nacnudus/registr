@@ -12,13 +12,13 @@
 #' @param write Logical, whether to write the RSF file to disk.  If `TRUE`,
 #'   either `name` or `dest_path` must be provided.
 #' @param dest_path Character, path and file name to write the RSF to.
-#' @param quietly Logical, if `TRUE` does not print messages to the console.
+#' @param quiet Logical, if `TRUE` does not print messages to the console.
 #'
 #' @export
 #' @examples
 #' rr_rsf("country")
 rr_rsf <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
-                   write = FALSE, dest_path = NULL, quietly = FALSE) {
+                   write = FALSE, dest_path = NULL, quiet = FALSE) {
   phase <- match.arg(phase)
   if (write) {
     if (is.null(dest_path)) {
@@ -38,7 +38,7 @@ rr_rsf <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
              beta = "https://{name}.register.gov.uk/download-rsf",
              alpha = "https://{name}.{phase}.openregister.org/download-rsf")
     register_url <- glue::glue(register_url)
-    if (!quietly) {
+    if (!quiet) {
       message("Downloading register '", name,
               "' from the '", phase, "' phase ...\n")
     }
