@@ -26,6 +26,7 @@ rr_register <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
                         write = FALSE, dest_path = NULL,
                         parse_datetimes = FALSE, quiet = TRUE) {
   rsf <- rr_rsf(name, phase, file, write, dest_path, quiet = quiet)
+  if (length(rsf) == 0) return(NULL)
   root_hash <- parse_root_hash(rsf)
   entries <- parse_entries(rsf)
   items <- parse_items(rsf)

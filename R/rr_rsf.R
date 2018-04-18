@@ -44,7 +44,13 @@ rr_rsf <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
     }
     register_path <- tempfile()
     on.exit(unlink(register_path))
-    download.file(register_url, register_path)
+    download <-
+      tryCatch({download.file(register_url, register_path, quiet = quiet)},
+        error = function(e) {
+          simpleWarning(glue::glue("The register {name} could not be downloaded"))
+          return(NULL)
+        })
+    if (is.null(download)) return(NULL)
     out <- readr::read_lines(register_path)
   }
   if (write) {
