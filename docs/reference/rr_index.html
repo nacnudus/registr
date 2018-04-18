@@ -122,7 +122,8 @@ have unique values)</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>country</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_register.html'>rr_register</a></span>(<span class='st'>"country"</span>)</div><div class='output co'>#&gt; <span class='message'>Downloading register 'country' from the 'beta' phase ...</span></div><div class='input'><span class='fu'>rr_index</span>(<span class='no'>country</span>, <span class='st'>"start-date"</span>)</div><div class='output co'>#&gt; # A tibble: 50 x 2
+    <pre class="examples"><div class='input'><span class='no'>country</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_register.html'>rr_register</a></span>(<span class='st'>"country"</span>)
+<span class='fu'>rr_index</span>(<span class='no'>country</span>, <span class='st'>"start-date"</span>)</div><div class='output co'>#&gt; # A tibble: 50 x 2
 #&gt;    .curie             .data              
 #&gt;    &lt;chr&gt;              &lt;list&gt;             
 #&gt;  1 country:           &lt;tibble [155 × 11]&gt;
@@ -155,7 +156,7 @@ have unique values)</p></td>
 #&gt;  8 country:AL &lt;tibble [1 × 11]&gt;
 #&gt;  9 country:DZ &lt;tibble [1 × 11]&gt;
 #&gt; 10 country:AD &lt;tibble [1 × 11]&gt;
-#&gt; # ... with 189 more rows</div><div class='input'><span class='fu'>rr_index</span>(<span class='fu'><a href='rr_register.html'>rr_register</a></span>(<span class='st'>"local-authority-eng"</span>), <span class='st'>"local-authority-type"</span>)</div><div class='output co'>#&gt; <span class='message'>Downloading register 'local-authority-eng' from the 'beta' phase ...</span></div><div class='output co'>#&gt; # A tibble: 7 x 2
+#&gt; # ... with 189 more rows</div><div class='input'><span class='fu'>rr_index</span>(<span class='fu'><a href='rr_register.html'>rr_register</a></span>(<span class='st'>"local-authority-eng"</span>), <span class='st'>"local-authority-type"</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 2
 #&gt;   .curie                  .data              
 #&gt;   &lt;chr&gt;                   &lt;list&gt;             
 #&gt; 1 local-authority-eng:UA  &lt;tibble [56 × 11]&gt; 

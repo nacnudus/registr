@@ -134,7 +134,8 @@ of a register object (<code>register$data$foo</code>) with the <code>"register"<
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>register</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_register.html'>rr_register</a></span>(<span class='st'>"allergen"</span>)</div><div class='output co'>#&gt; <span class='message'>Downloading register 'allergen' from the 'beta' phase ...</span></div><div class='input'><span class='fu'>rr_key_fields</span>(<span class='no'>register</span>)</div><div class='output co'>#&gt; [1] "allergen-group"</div><div class='input'><span class='fu'>rr_key_links</span>(<span class='no'>register</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
+    <pre class="examples"><div class='input'><span class='no'>register</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_register.html'>rr_register</a></span>(<span class='st'>"allergen"</span>)
+<span class='fu'>rr_key_fields</span>(<span class='no'>register</span>)</div><div class='output co'>#&gt; [1] "allergen-group"</div><div class='input'><span class='fu'>rr_key_links</span>(<span class='no'>register</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
 #&gt;   field          register
 #&gt;   &lt;chr&gt;          &lt;chr&gt;   
 #&gt; 1 allergen-group allergen</div></pre>
