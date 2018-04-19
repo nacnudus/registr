@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 ```{r setup, include = FALSE}
@@ -40,7 +38,7 @@ devtools::install_github("openregister/RegistersClientR",
 
 ## Examples
 
-```{r}
+```{r, cache = TRUE}
 library(RegistersClientR)
 ```
 
@@ -48,13 +46,13 @@ library(RegistersClientR)
 
 Download a single register.
 
-```{r}
+```{r, cache = TRUE}
 country <- rr_register("country")
 ```
 
 Download all registers.
 
-```{r}
+```{r, cache = TRUE}
 registers <- rr_registers(quiet = TRUE)
 names(registers)
 ```
@@ -66,7 +64,7 @@ If you need alpha ('open for feedback') registers, use `phase = "alpha")`
 
 The schema and data are in `$shema` and `$data`.
 
-```{r}
+```{r, cache = TRUE}
 country <- registers$country
 country$schema
 country$data
@@ -76,7 +74,7 @@ You probably want to take a snapshot first.  This will take the latest version
 of the schema, and the latest version of each record (e.g. the most recent name
 of a country)
 
-```{r}
+```{r, cache = TRUE}
 country$schema$custodian
 rr_snapshot(country)$schema$custodian
 ```
@@ -95,7 +93,7 @@ Registers link in two ways.
   a register, and `reference` is a value in the primary field of that register
   (the field with the same name as the register).
 
-```{r}
+```{r, cache = TRUE}
 rr_links(registers$`statistical-geography`)
 ```
 
@@ -108,21 +106,21 @@ multi-row data frame.
 
 If a linking field is `cardinality = 'n'`, a list of data frames is returned.
 
-```{r}
+```{r, cache = TRUE}
 rr_resolve_links(registers$`statistical-geography`, registers)$data
 ```
 
 You can resolve to only the latest entry of each record by creating a
 `registers` object with snapshots.
 
-```{r}
+```{r, cache = TRUE}
 registers_snapshot <- purrr::map(registers, rr_snapshot)
 rr_resolve_links(registers$`statistical-geography`, registers_snapshot)$data
 ```
 
 Plot the links between registers with something like the `ggraph` package.
 
-```{r}
+```{r, cache = TRUE}
 library(tidygraph)
 library(ggraph)
 
@@ -156,7 +154,7 @@ registers %>%
 
 You can index registers by any column, using CURIE-like syntax.
 
-```{r}
+```{r, cache = TRUE}
 country <- registers$country
 rr_index(country, "start-date")
 rr_index(country, "end-date")

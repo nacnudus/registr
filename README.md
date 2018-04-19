@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 
@@ -253,13 +251,7 @@ Plot the links between registers with something like the `ggraph` package.
 
 ```r
 library(tidygraph)
-#> 
-#> Attaching package: 'tidygraph'
-#> The following object is masked from 'package:stats':
-#> 
-#>     filter
 library(ggraph)
-#> Loading required package: ggplot2
 
 registers$`statistical-geography` %>%
   rr_links() %>%
