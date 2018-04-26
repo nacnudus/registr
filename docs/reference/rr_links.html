@@ -129,8 +129,40 @@ registers will be returned.</p></td>
 #&gt;   from     to       type  field         
 #&gt;   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;         
 #&gt; 1 allergen allergen key   allergen-group</div><div class='input'>
-<span class='no'>registers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_registers.html'>rr_registers</a></span>()
-<span class='fu'>rr_links</span>(<span class='no'>registers</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 4
+<span class='no'>registers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_registers.html'>rr_registers</a></span>()</div><div class='output co'>#&gt; country 
+#&gt; field 
+#&gt; territory 
+#&gt; government-organisation 
+#&gt; government-service 
+#&gt; local-authority-sct 
+#&gt; principal-local-authority 
+#&gt; register 
+#&gt; datatype 
+#&gt; internal-drainage-board 
+#&gt; registration-district 
+#&gt; statistical-geography-unitary-authority-wls 
+#&gt; statistical-geography 
+#&gt; prison-estate 
+#&gt; local-authority-nir 
+#&gt; statistical-geography-county-eng 
+#&gt; statistical-geography-london-borough-eng 
+#&gt; statistical-geography-metropolitan-district-eng 
+#&gt; statistical-geography-registration-district-eng 
+#&gt; statistical-geography-registration-district-wls 
+#&gt; statistical-geography-non-metropolitan-district-eng 
+#&gt; statistical-geography-unitary-authority-eng 
+#&gt; allergen 
+#&gt; statistical-geography-local-government-district-nir 
+#&gt; jobcentre 
+#&gt; jobcentre-district 
+#&gt; jobcentre-group 
+#&gt; local-authority-type 
+#&gt; local-authority-eng 
+#&gt; qualification-assessment-method 
+#&gt; qualification-level 
+#&gt; qualification-sector-subject-area 
+#&gt; qualification-type 
+#&gt; government-domain </div><div class='input'><span class='fu'>rr_links</span>(<span class='no'>registers</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 4
 #&gt;    from                                        to            type  field       
 #&gt;    &lt;chr&gt;                                       &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;       
 #&gt;  1 field                                       datatype      key   datatype    
@@ -157,7 +189,7 @@ registers will be returned.</p></td>
   <span class='no'>edge_arrow</span> <span class='kw'>&lt;-</span> <span class='fu'>arrow</span>(<span class='kw'>length</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>4</span>, <span class='st'>"mm"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"closed"</span>)
   <span class='no'>registers</span> <span class='kw'>%&gt;%</span>
     <span class='fu'>rr_links</span>() <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/distinct'>distinct</a></span>(<span class='no'>from</span>, <span class='no'>to</span>, <span class='no'>type</span>) <span class='kw'>%&gt;%</span>
+    <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span>(<span class='no'>from</span>, <span class='no'>to</span>, <span class='no'>type</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph'>as_tbl_graph</a></span>() <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='http://www.rdocumentation.org/packages/ggraph/topics/ggraph'>ggraph</a></span>(<span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"nicely"</span>) +
       <span class='fu'><a href='http://www.rdocumentation.org/packages/ggraph/topics/geom_node_point'>geom_node_point</a></span>() +

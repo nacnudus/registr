@@ -155,8 +155,40 @@ purrr::map_dfr(rr_index)</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>registers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_registers.html'>rr_registers</a></span>()
-
+    <pre class="examples"><div class='input'><span class='no'>registers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_registers.html'>rr_registers</a></span>()</div><div class='output co'>#&gt; country 
+#&gt; field 
+#&gt; territory 
+#&gt; government-organisation 
+#&gt; government-service 
+#&gt; local-authority-sct 
+#&gt; principal-local-authority 
+#&gt; register 
+#&gt; datatype 
+#&gt; internal-drainage-board 
+#&gt; registration-district 
+#&gt; statistical-geography-unitary-authority-wls 
+#&gt; statistical-geography 
+#&gt; prison-estate 
+#&gt; local-authority-nir 
+#&gt; statistical-geography-county-eng 
+#&gt; statistical-geography-london-borough-eng 
+#&gt; statistical-geography-metropolitan-district-eng 
+#&gt; statistical-geography-registration-district-eng 
+#&gt; statistical-geography-registration-district-wls 
+#&gt; statistical-geography-non-metropolitan-district-eng 
+#&gt; statistical-geography-unitary-authority-eng 
+#&gt; allergen 
+#&gt; statistical-geography-local-government-district-nir 
+#&gt; jobcentre 
+#&gt; jobcentre-district 
+#&gt; jobcentre-group 
+#&gt; local-authority-type 
+#&gt; local-authority-eng 
+#&gt; qualification-assessment-method 
+#&gt; qualification-level 
+#&gt; qualification-sector-subject-area 
+#&gt; qualification-type 
+#&gt; government-domain </div><div class='input'>
 <span class='no'>targets</span> <span class='kw'>&lt;-</span>
   <span class='no'>registers</span> <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>rr_snapshot</span>) <span class='kw'>%&gt;%</span>

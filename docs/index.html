@@ -64,6 +64,7 @@
     
     
 <div class="contents">
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="registersclientr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#registersclientr" class="anchor"></a>RegistersClientR</h1></div>
@@ -247,28 +248,22 @@
 <a class="sourceLine" id="cb10-18" data-line-number="18"><span class="co">#&gt; #   `end-date` &lt;chr&gt;</span></a></code></pre></div>
 <p>Plot the links between registers with something like the <code>ggraph</code> package.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">library</span>(tidygraph)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; Attaching package: 'tidygraph'</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; The following object is masked from 'package:stats':</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt;     filter</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="kw">library</span>(ggraph)</a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; Loading required package: ggplot2</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10">registers<span class="op">$</span><span class="st">`</span><span class="dt">statistical-geography</span><span class="st">`</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="reference/rr_links.html">rr_links</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph">as_tbl_graph</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"nicely"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_edge_fan">geom_edge_fan</a></span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> ..index..), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_edge_loop">geom_edge_loop</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_label</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="st">    </span><span class="kw">theme_void</span>()</a></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-11-1.png" width="100%"></p>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">library</span>(ggraph)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">registers<span class="op">$</span><span class="st">`</span><span class="dt">statistical-geography</span><span class="st">`</span> <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/rr_links.html">rr_links</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph">as_tbl_graph</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"nicely"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_edge_fan">geom_edge_fan</a></span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> ..index..), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_edge_loop">geom_edge_loop</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_label</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_void</span>()</a></code></pre></div>
+<p><img src="README-unnamed-chunk-12-1.png" width="672"></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb12-2" data-line-number="2">edge_arrow &lt;-<span class="st"> </span><span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">"mm"</span>), <span class="dt">type =</span> <span class="st">"closed"</span>)</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3">registers <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/rr_links.html">rr_links</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/distinct">distinct</a></span>(from, to, type) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(from, to, type) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph">as_tbl_graph</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"nicely"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>() <span class="op">+</span></a>
@@ -280,7 +275,7 @@
 <a class="sourceLine" id="cb12-14" data-line-number="14">                   <span class="dt">end_cap =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geometry">circle</a></span>(<span class="dv">2</span>, <span class="st">'mm'</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-15" data-line-number="15"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_label</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">repel =</span> <span class="ot">TRUE</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-16" data-line-number="16"><span class="st">    </span><span class="kw">theme_void</span>()</a></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-11-2.png" width="100%"></p>
+<p><img src="README-unnamed-chunk-12-2.png" width="672"></p>
 </div>
 <div id="index-registers" class="section level3">
 <h3 class="hasAnchor">
