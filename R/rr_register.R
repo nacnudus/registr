@@ -22,8 +22,8 @@
 #' rr_register(file = path)
 #' unlink(path)
 #' @export
-rr_register <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
-                        write = FALSE, dest_path = NULL,
+rr_register <- function(name = NULL, phase = c("beta", "alpha", "discovery"),
+                        file = NULL, write = FALSE, dest_path = NULL,
                         parse_datetimes = FALSE, quiet = TRUE) {
   rsf <- rr_rsf(name, phase, file, write, dest_path, quiet = quiet)
   if (length(rsf) == 0) return(NULL)

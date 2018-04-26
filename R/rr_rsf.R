@@ -6,7 +6,7 @@
 #'   reads it from disk.  Optionally saves it to disk.
 #'
 #' @param name Character, the name of the register.
-#' @param phase Character, one of `"beta"` or `"alpha"`
+#' @param phase Character, one of `"beta"`, `"alpha"`, and `"discovery"`
 #' @param file Character, file path or URL, passed on to [readr::read_lines()]
 #'   if `name` is not provided.
 #' @param write Logical, whether to write the RSF file to disk.  If `TRUE`,
@@ -17,8 +17,9 @@
 #' @export
 #' @examples
 #' rr_rsf("country")
-rr_rsf <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
-                   write = FALSE, dest_path = NULL, quiet = FALSE) {
+rr_rsf <- function(name = NULL, phase = c("beta", "alpha", "discovery"),
+                   file = NULL, write = FALSE, dest_path = NULL,
+                   quiet = FALSE) {
   phase <- match.arg(phase)
   if (write) {
     if (is.null(dest_path)) {
@@ -32,11 +33,11 @@ rr_rsf <- function(name = NULL, phase = c("beta", "alpha"), file = NULL,
   if (is.null(name)) {
     out <- readr::read_lines(file)
   } else {
-    phase <- match.arg(phase)
     register_url <-
       switch(phase,
              beta = "https://{name}.register.gov.uk/download-rsf",
-             alpha = "https://{name}.{phase}.openregister.org/download-rsf")
+             alpha = "https://{name}.{phase}.openregister.org/download-rsf",
+             discovery = "https://{name}.cloudapps.digital/download-rsf")
     register_url <- glue::glue(register_url)
     if (!quiet) {
       message("Downloading register '", name,

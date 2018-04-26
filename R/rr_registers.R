@@ -1,8 +1,8 @@
 #' Download all registers from an environment
 #'
 #' @description Downloads all the registers listed in the register register of
-#'    an environment ('alpha' or 'beta', meaning 'ready to use' or 'open for
-#'    feedback').
+#'    an environment ('alpha', 'beta', or 'discovery'), meaning 'ready to use',
+#'    'open for feedback', or 'in progress').
 #'
 #'    Unlike [rr_register()] this function only downloads register, and does not
 #'    read them from disk.
@@ -20,7 +20,7 @@
 #' names(rr_registers("beta", write = TRUE, dest_dir = path))
 #' names(rr_registers(dir = path))
 #' @export
-rr_registers <- function(phase = c("beta", "alpha"),
+rr_registers <- function(phase = c("beta", "alpha", "discovery"),
                          dir = NULL,
                          parse_datetimes = FALSE, write = FALSE,
                          dest_dir = phase,
@@ -39,8 +39,8 @@ rr_registers <- function(phase = c("beta", "alpha"),
     }
     registers <-
       purrr::map2(register_names, dest_path,
-                 ~ rr_register(.x, phase = phase, write = write,
-                               dest_path = .y, quiet = quiet))
+                 function(.x, .y) {cat(.x, "\n"); rr_register(.x, phase = phase, write = write,
+                               dest_path = .y, quiet = quiet)})
     names(registers) <- register_names
   } else {
     paths <- fs::dir_ls(dir)

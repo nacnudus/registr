@@ -6,8 +6,8 @@
 #'
 #' @param x Character vector (a field of a register).
 #' @param datatype Name of the datatype to apply: currently one of `"curie"`,
-#'   `"url"`, `"datetime"`, `"string"`, `"integer"` and `"text"`.  Unrecognised
-#'   datatypes will be returned unaltered.
+#'   `"url"`, `"datetime"`, `"string"`, `"integer"`, `"text"`, and `"point"`.
+#'   Unrecognised datatypes will be returned as characters.
 #' @param cardinality Character, one of `"1"` and `"n"` to say whether each
 #'   element of `x` contains multiple values separated by semicolons.
 #' @param apply_iso_8601 Logical, whether to parse ISO8601 strings as datetimes
@@ -27,6 +27,7 @@ rr_apply_datatype <- function(x, datatype, cardinality = 1, apply_iso_8601 = TRU
                                         parse = apply_iso_8601),
                   string = purrr::map(x, as.character),
                   integer = purrr::map(x, as.integer),
+                  point = purrr::map(x, as.character),
                   text = purrr::map(x, as.character),
                   purrr::map(x, as.character))
     return(out)
@@ -37,6 +38,7 @@ rr_apply_datatype <- function(x, datatype, cardinality = 1, apply_iso_8601 = TRU
          datetime = maybe_parse_iso_8601(x, apply_iso_8601),
          string = as.character(x),
          integer = as.integer(x),
+         point = as.character(x),
          text = as.character(x),
          as.character(x))
 }

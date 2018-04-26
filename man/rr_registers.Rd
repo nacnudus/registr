@@ -4,12 +4,12 @@
 \alias{rr_registers}
 \title{Download all registers from an environment}
 \usage{
-rr_registers(phase = c("beta", "alpha"), dir = NULL,
+rr_registers(phase = c("beta", "alpha", "discovery"), dir = NULL,
   parse_datetimes = FALSE, write = FALSE, dest_dir = phase,
   quiet = TRUE)
 }
 \arguments{
-\item{phase}{Character, one of \code{"beta"} or \code{"alpha"}}
+\item{phase}{Character, one of \code{"beta"}, \code{"alpha"}, and \code{"discovery"}}
 
 \item{dir}{Character, optional name of a directory of RSF files of registers.
 If \code{NULL} (default), the registers will be downloaded.}
@@ -32,8 +32,8 @@ An S3 object of class \code{register}
 }
 \description{
 Downloads all the registers listed in the register register of
-an environment ('alpha' or 'beta', meaning 'ready to use' or 'open for
-feedback').
+an environment ('alpha', 'beta', or 'discovery'), meaning 'ready to use',
+'open for feedback', or 'in progress').
 
 Unlike \code{\link[=rr_register]{rr_register()}} this function only downloads register, and does not
 read them from disk.

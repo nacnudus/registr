@@ -11,7 +11,7 @@ rr_register(name = NULL, phase = c("beta", "alpha"), file = NULL,
 \arguments{
 \item{name}{Character, the name of the register.}
 
-\item{phase}{Character, one of \code{"beta"} or \code{"alpha"}}
+\item{phase}{Character, one of \code{"beta"}, \code{"alpha"}, and \code{"discovery"}}
 
 \item{file}{Character, file path or URL, passed on to \code{\link[readr:read_lines]{readr::read_lines()}}
 if \code{name} is not provided.}
