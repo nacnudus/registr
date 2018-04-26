@@ -10,8 +10,8 @@ rr_apply_datatype(x, datatype, cardinality = 1, apply_iso_8601 = TRUE)
 \item{x}{Character vector (a field of a register).}
 
 \item{datatype}{Name of the datatype to apply: currently one of \code{"curie"},
-\code{"url"}, \code{"datetime"}, \code{"string"}, \code{"integer"} and \code{"text"}.  Unrecognised
-datatypes will be returned unaltered.}
+\code{"url"}, \code{"datetime"}, \code{"string"}, \code{"integer"}, \code{"text"}, and \code{"point"}.
+Unrecognised datatypes will be returned as characters.}
 
 \item{cardinality}{Character, one of \code{"1"} and \code{"n"} to say whether each
 element of \code{x} contains multiple values separated by semicolons.}

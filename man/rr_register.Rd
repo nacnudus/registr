@@ -4,8 +4,8 @@
 \alias{rr_register}
 \title{Download a register}
 \usage{
-rr_register(name = NULL, phase = c("beta", "alpha"), file = NULL,
-  write = FALSE, dest_path = NULL, parse_datetimes = FALSE,
+rr_register(name = NULL, phase = c("beta", "alpha", "discovery"),
+  file = NULL, write = FALSE, dest_path = NULL, parse_datetimes = FALSE,
   quiet = TRUE)
 }
 \arguments{
