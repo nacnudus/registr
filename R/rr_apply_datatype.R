@@ -27,7 +27,8 @@ rr_apply_datatype <- function(x, datatype, cardinality = 1, apply_iso_8601 = TRU
                                         parse = apply_iso_8601),
                   string = purrr::map(x, as.character),
                   integer = purrr::map(x, as.integer),
-                  text = purrr::map(x, as.character))
+                  text = purrr::map(x, as.character),
+                  purrr::map(x, as.character))
     return(out)
   }
   switch(datatype,
@@ -36,7 +37,8 @@ rr_apply_datatype <- function(x, datatype, cardinality = 1, apply_iso_8601 = TRU
          datetime = maybe_parse_iso_8601(x, apply_iso_8601),
          string = as.character(x),
          integer = as.integer(x),
-         text = as.character(x))
+         text = as.character(x),
+         as.character(x))
 }
 
 #' Parse ISO8601 strings as datetimes or characters
