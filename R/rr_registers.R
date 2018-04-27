@@ -39,8 +39,8 @@ rr_registers <- function(phase = c("beta", "alpha", "discovery"),
     }
     registers <-
       purrr::map2(register_names, dest_path,
-                 function(.x, .y) {cat(.x, "\n"); rr_register(.x, phase = phase, write = write,
-                               dest_path = .y, quiet = quiet)})
+                  ~ rr_register(.x, phase = phase, write = write,
+                                dest_path = .y, quiet = quiet))
     names(registers) <- register_names
   } else {
     paths <- fs::dir_ls(dir)
