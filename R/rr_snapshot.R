@@ -56,9 +56,13 @@ rr_snapshot.register <- function(register,
   entries <- rr_records(register$entries, sequence, maximum, include_maximum)
   entry_data <- resolve_entry_items(entries, register$items)
   system_entries <- dplyr::filter(entry_data, type == "system")
-  name <-
+  register_id <-
     system_entries %>%
     dplyr::filter(key == "name") %>%
+    flatten_entries()
+  register_name <-
+    system_entries %>%
+    dplyr::filter(key == "register-name") %>%
     flatten_entries()
   custodian <-
     system_entries %>%
@@ -91,11 +95,11 @@ rr_snapshot.register <- function(register,
                                                 !! parse_datetimes)))
   names(converters) <- fields$field
   user_entries <- dplyr::mutate(user_entries, !!! converters)
-  list(name = name, custodian = custodian, fields = fields, data = user_entries)
   structure(list(root_hash = register$root_hash,
                  entries = register$entries,
                  items = register$items,
-                 schema = list(names = name,
+                 schema = list(ids = register_id,
+                               names = register_name,
                                custodians = custodian,
                                fields = fields),
                  data = user_entries),

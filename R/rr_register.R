@@ -32,9 +32,13 @@ rr_register <- function(name = NULL, phase = c("beta", "alpha", "discovery"),
   items <- parse_items(rsf)
   entry_data <- resolve_entry_items(entries, items)
   system_entries <- dplyr::filter(entry_data, type == "system")
-  names <-
+  register_ids <-
     system_entries %>%
     dplyr::filter(key == "name") %>%
+    flatten_entries()
+  register_names <-
+    system_entries %>%
+    dplyr::filter(key == "register-name") %>%
     flatten_entries()
   custodians <-
     system_entries %>%
@@ -73,7 +77,8 @@ rr_register <- function(name = NULL, phase = c("beta", "alpha", "discovery"),
   structure(list(root_hash = root_hash,
                  entries = entries,
                  items = items,
-                 schema = list(names = names,
+                 schema = list(ids = register_ids,
+                               names = register_names,
                                custodians = custodians,
                                fields = fields),
                  data = user_entries),
