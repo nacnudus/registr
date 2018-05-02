@@ -113,8 +113,9 @@ rr_resolve_links <- function(register, registers, targets = NULL) {
   UseMethod("rr_resolve_links")
 }
 
+#' @rdname rr_resolve
 #' @export
-rr_resolve_links <- function(register, registers, targets = NULL) {
+rr_resolve_links.register <- function(register, registers, targets = NULL) {
   snapshot <- rr_snapshot(register)
   links <-
     register %>%

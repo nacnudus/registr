@@ -5,6 +5,7 @@
 \alias{rr_resolve_key_field}
 \alias{rr_resolve_curie_field}
 \alias{rr_resolve_links}
+\alias{rr_resolve_links.register}
 \title{Resolve links in registers}
 \usage{
 rr_resolve_key_field(field_name, register, registers)
@@ -13,6 +14,8 @@ rr_resolve_curie_field(field_name, register, registers = NULL,
   targets = NULL)
 
 rr_resolve_links(register, registers, targets = NULL)
+
+\method{rr_resolve_links}{register}(register, registers, targets = NULL)
 }
 \arguments{
 \item{field_name}{Character, the name of a field to resolve.}
