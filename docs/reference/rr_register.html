@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download a register — rr_register • RegistersClientR</title>
+<title>Download a register — rr_register • registr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Download a register — rr_register" />
 
 <meta property="og:description" content="Downloads a whole register (or reads it from a file) and
@@ -57,7 +60,7 @@ You should probably run rr_snapshot() on the output before using it." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">RegistersClientR</a>
+        <a class="navbar-link" href="../index.html">registr</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
@@ -81,6 +84,7 @@ You should probably run rr_snapshot() on the output before using it." />
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -88,19 +92,22 @@ You should probably run rr_snapshot() on the output before using it." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Download a register</h1>
     
+    <div class="hidden name"><code>rr_register.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Downloads a whole register (or reads it from a file) and
 constructs an object that can be interrogated for its records, entries,
 items, schema, links to other registers, etc.</p>
 <p>You should probably run <code><a href='rr_snapshot.html'>rr_snapshot()</a></code> on the output before using it.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>rr_register</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>phase</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"beta"</span>, <span class='st'>"alpha"</span>, <span class='st'>"discovery"</span>),
   <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>write</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dest_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>parse_datetimes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -187,11 +194,16 @@ becomes <code>"2018-01-01 UTC"</code>.</p></td>
 #&gt; # ... with 209 more rows
 #&gt; 
 #&gt; $schema
-#&gt; $schema$names
+#&gt; $schema$ids
 #&gt; # A tibble: 1 x 6
 #&gt;   `entry-number` type   key   timestamp           hash                    name 
 #&gt;            &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;                   &lt;chr&gt;
 #&gt; 1              1 system name  2017-07-17 10:59:47 d3d8e15fbd410e08bd8969… coun…
+#&gt; 
+#&gt; $schema$names
+#&gt; # A tibble: 0 x 5
+#&gt; # ... with 5 variables: `entry-number` &lt;int&gt;, type &lt;chr&gt;, key &lt;chr&gt;,
+#&gt; #   timestamp &lt;dttm&gt;, hash &lt;chr&gt;
 #&gt; 
 #&gt; $schema$custodians
 #&gt; # A tibble: 2 x 6
@@ -270,11 +282,16 @@ becomes <code>"2018-01-01 UTC"</code>.</p></td>
 #&gt; # ... with 209 more rows
 #&gt; 
 #&gt; $schema
-#&gt; $schema$names
+#&gt; $schema$ids
 #&gt; # A tibble: 1 x 6
 #&gt;   `entry-number` type   key   timestamp           hash                    name 
 #&gt;            &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;                   &lt;chr&gt;
 #&gt; 1              1 system name  2017-07-17 10:59:47 d3d8e15fbd410e08bd8969… coun…
+#&gt; 
+#&gt; $schema$names
+#&gt; # A tibble: 0 x 5
+#&gt; # ... with 5 variables: `entry-number` &lt;int&gt;, type &lt;chr&gt;, key &lt;chr&gt;,
+#&gt; #   timestamp &lt;dttm&gt;, hash &lt;chr&gt;
 #&gt; 
 #&gt; $schema$custodians
 #&gt; # A tibble: 2 x 6
@@ -355,11 +372,16 @@ becomes <code>"2018-01-01 UTC"</code>.</p></td>
 #&gt; # ... with 209 more rows
 #&gt; 
 #&gt; $schema
-#&gt; $schema$names
+#&gt; $schema$ids
 #&gt; # A tibble: 1 x 6
 #&gt;   `entry-number` type   key   timestamp           hash                    name 
 #&gt;            &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;                   &lt;chr&gt;
 #&gt; 1              1 system name  2017-07-17 10:59:47 d3d8e15fbd410e08bd8969… coun…
+#&gt; 
+#&gt; $schema$names
+#&gt; # A tibble: 0 x 5
+#&gt; # ... with 5 variables: `entry-number` &lt;int&gt;, type &lt;chr&gt;, key &lt;chr&gt;,
+#&gt; #   timestamp &lt;dttm&gt;, hash &lt;chr&gt;
 #&gt; 
 #&gt; $schema$custodians
 #&gt; # A tibble: 2 x 6
@@ -427,6 +449,8 @@ becomes <code>"2018-01-01 UTC"</code>.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

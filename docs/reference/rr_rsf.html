@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download a register RSF file — rr_rsf • RegistersClientR</title>
+<title>Download a register RSF file — rr_rsf • registr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Download a register RSF file — rr_rsf" />
 
 <meta property="og:description" content="Either downloads the Register Serialisation Format (RSF) file of a register,
@@ -56,7 +59,7 @@ reads it from disk.  Optionally saves it to disk." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">RegistersClientR</a>
+        <a class="navbar-link" href="../index.html">registr</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
@@ -80,6 +83,7 @@ reads it from disk.  Optionally saves it to disk." />
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -87,18 +91,21 @@ reads it from disk.  Optionally saves it to disk." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Download a register RSF file</h1>
     
+    <div class="hidden name"><code>rr_rsf.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Either downloads the Register Serialisation Format (RSF) file of a register,
 constructing the URL from the name of the register and the given phase, or
 reads it from disk.  Optionally saves it to disk.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>rr_rsf</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>phase</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"beta"</span>, <span class='st'>"alpha"</span>, <span class='st'>"discovery"</span>), <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>write</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dest_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -599,6 +606,8 @@ either <code>name</code> or <code>dest_path</code> must be provided.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

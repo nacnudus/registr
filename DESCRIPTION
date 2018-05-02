@@ -1,4 +1,4 @@
-Package: RegistersClientR
+Package: registr
 Title: Use the UK Government Registers API
 Version: 0.0.2
 Authors@R: person("Duncan", "Garmonsway", email = "duncan.garmonsway@gmail.com", role = c("aut", "cre"))

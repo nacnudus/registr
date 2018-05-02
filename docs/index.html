@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Use the UK Government Registers API • RegistersClientR</title>
+<title>Use the UK Government Registers API • registr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -28,7 +28,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">RegistersClientR</a>
+        <a class="navbar-link" href="index.html">registr</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
@@ -58,31 +58,39 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     
 
     
     
-<div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<div id="registersclientr" class="section level1">
+<div id="registr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#registersclientr" class="anchor"></a>RegistersClientR</h1></div>
-<p>This package doesn’t really wrap the <a href="https://registers.cloudapps.digital/">registers</a> <a href="https://registers-docs.cloudapps.digital/#api-documentation-for-registers">API</a>. Instead, it downloads the ‘raw’ registers in RSF (Register Serialisation Format), and parses that.</p>
+<a href="#registr" class="anchor"></a>registr</h1></div>
+<p>This is an unofficial client for the <a href="https://www.gov.uk/">GOV.UK</a> <a href="https://registers.cloudapps.digital/">Registers</a> <a href="https://registers-docs.cloudapps.digital/#api-documentation-for-registers">API</a>.</p>
 <p>Registers are authoritative lists of things, built and maintained by the UK government, for example, the <code>country</code> register is a list of countries.</p>
+<p>It doesn’t really wrap the API. Instead, it downloads the ‘raw’ registers in RSF (Register Serialisation Format – not yet documented publicly), and parses that.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools") # if you don't already have devtools installed</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"openregister/RegistersClientR"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"nacnudus/registr"</span>)</a></code></pre></div>
 <p>To install a very early version of the package for running old scripts:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"openregister/RegistersClientR"</span>,</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"nacnudus/registr"</span>,</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">                         <span class="dt">ref =</span> <span class="st">"08c42c95bc65a0cb8131100416a372660b8a1bd5"</span>)</a></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(RegistersClientR)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(registr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; Attaching package: 'registr'</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; The following objects are masked from 'package:RegistersClientR':</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;     rr_apply_datatype, rr_curie_fields, rr_curie_links, rr_index,</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;     rr_key_fields, rr_key_links, rr_links, rr_parse_curie,</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;     rr_records, rr_register, rr_registers, rr_resolve_curie_field,</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;     rr_resolve_key_field, rr_resolve_links, rr_rsf, rr_snapshot</span></a></code></pre></div>
 <div id="download-registers" class="section level3">
 <h3 class="hasAnchor">
 <a href="#download-registers" class="anchor"></a>Download registers</h3>
@@ -133,49 +141,54 @@
 <p>The schema and data are in <code>$shema</code> and <code>$data</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">country &lt;-<span class="st"> </span>registers<span class="op">$</span>country</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">country<span class="op">$</span>schema</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; $names</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; $ids</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; # A tibble: 1 x 6</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;   `entry-number` type   key   timestamp           hash               name </span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;            &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;              &lt;chr&gt;</span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 1              1 system name  2017-07-17 10:59:47 d3d8e15fbd410e08b… coun…</span></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; $custodians</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;   `entry-number` type   key       timestamp           hash       custodian</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;            &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;      &lt;chr&gt;    </span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 1              2 system custodian 2017-07-17 10:59:47 6bdb76b1c… Tony Wor…</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 2             12 system custodian 2017-11-02 11:18:00 aa98858fc… David de…</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; $fields</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt; # A tibble: 8 x 11</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt;   `entry-number` type   key    timestamp           hash     field datatype</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt;            &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dttm&gt;              &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   </span></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt; 1              3 system field… 2017-01-10 17:16:07 a303d05… coun… string  </span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt; 2              4 system field… 2017-01-10 17:16:07 a7a9f22… name  string  </span></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt; 3              5 system field… 2017-01-10 17:16:07 5c4728f… offi… string  </span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt; 4              6 system field… 2017-01-10 17:16:07 494f6fa… citi… string  </span></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt; 5              7 system field… 2017-01-10 17:16:07 1cff4c6… star… datetime</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt; 6              8 system field… 2017-01-10 17:16:07 a557fa9… end-… datetime</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt; 7             10 system field… 2017-08-29 11:30:00 f09c439… star… datetime</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt; 8             11 system field… 2017-08-29 11:31:00 c5845bf… end-… datetime</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt; # ... with 4 more variables: phase &lt;chr&gt;, register &lt;chr&gt;,</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co">#&gt; #   cardinality &lt;chr&gt;, text &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb6-30" data-line-number="30">country<span class="op">$</span>data</a>
-<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co">#&gt; # A tibble: 207 x 11</span></a>
-<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">#&gt;    `entry-number` type  key   timestamp           hash       country name </span></a>
-<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">#&gt;             &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt;  1             13 user  SU    2016-04-05 13:23:05 e94c4a9ab… SU      USSR </span></a>
-<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="co">#&gt;  2             14 user  DE    2016-04-05 13:23:05 e03f97c28… DE      West…</span></a>
-<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt;  3             15 user  DD    2016-04-05 13:23:05 e1357671d… DD      East…</span></a>
-<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt;  4             16 user  YU    2016-04-05 13:23:05 a074752a7… YU      Yugo…</span></a>
-<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">#&gt;  5             17 user  CS    2016-04-05 13:23:05 0031f311f… CS      Czec…</span></a>
-<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt;  6             18 user  GB    2016-04-05 13:23:05 6b1869387… GB      Unit…</span></a>
-<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt;  7             19 user  AF    2016-04-05 13:23:05 6bf7f01f2… AF      Afgh…</span></a>
-<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt;  8             20 user  AL    2016-04-05 13:23:05 9d04a7e04… AL      Alba…</span></a>
-<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt;  9             21 user  DZ    2016-04-05 13:23:05 3548cdf52… DZ      Alge…</span></a>
-<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt; 10             22 user  AD    2016-04-05 13:23:05 14fcb5099… AD      Ando…</span></a>
-<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">#&gt; # ... with 197 more rows, and 4 more variables: `official-name` &lt;chr&gt;,</span></a>
-<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt; #   `citizen-names` &lt;chr&gt;, `start-date` &lt;chr&gt;, `end-date` &lt;chr&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; $names</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; # A tibble: 0 x 5</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; # ... with 5 variables: `entry-number` &lt;int&gt;, type &lt;chr&gt;, key &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; #   timestamp &lt;dttm&gt;, hash &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; $custodians</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt;   `entry-number` type   key       timestamp           hash       custodian</span></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt;            &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;      &lt;chr&gt;    </span></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt; 1              2 system custodian 2017-07-17 10:59:47 6bdb76b1c… Tony Wor…</span></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt; 2             12 system custodian 2017-11-02 11:18:00 aa98858fc… David de…</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt; $fields</span></a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt; # A tibble: 8 x 11</span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt;   `entry-number` type   key    timestamp           hash     field datatype</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt;            &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dttm&gt;              &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   </span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt; 1              3 system field… 2017-01-10 17:16:07 a303d05… coun… string  </span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt; 2              4 system field… 2017-01-10 17:16:07 a7a9f22… name  string  </span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#&gt; 3              5 system field… 2017-01-10 17:16:07 5c4728f… offi… string  </span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="co">#&gt; 4              6 system field… 2017-01-10 17:16:07 494f6fa… citi… string  </span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"><span class="co">#&gt; 5              7 system field… 2017-01-10 17:16:07 1cff4c6… star… datetime</span></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co">#&gt; 6              8 system field… 2017-01-10 17:16:07 a557fa9… end-… datetime</span></a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co">#&gt; 7             10 system field… 2017-08-29 11:30:00 f09c439… star… datetime</span></a>
+<a class="sourceLine" id="cb6-32" data-line-number="32"><span class="co">#&gt; 8             11 system field… 2017-08-29 11:31:00 c5845bf… end-… datetime</span></a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co">#&gt; # ... with 4 more variables: phase &lt;chr&gt;, register &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co">#&gt; #   cardinality &lt;chr&gt;, text &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb6-35" data-line-number="35">country<span class="op">$</span>data</a>
+<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">#&gt; # A tibble: 207 x 11</span></a>
+<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">#&gt;    `entry-number` type  key   timestamp           hash       country name </span></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">#&gt;             &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dttm&gt;              &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt;  1             13 user  SU    2016-04-05 13:23:05 e94c4a9ab… SU      USSR </span></a>
+<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt;  2             14 user  DE    2016-04-05 13:23:05 e03f97c28… DE      West…</span></a>
+<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt;  3             15 user  DD    2016-04-05 13:23:05 e1357671d… DD      East…</span></a>
+<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt;  4             16 user  YU    2016-04-05 13:23:05 a074752a7… YU      Yugo…</span></a>
+<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt;  5             17 user  CS    2016-04-05 13:23:05 0031f311f… CS      Czec…</span></a>
+<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">#&gt;  6             18 user  GB    2016-04-05 13:23:05 6b1869387… GB      Unit…</span></a>
+<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt;  7             19 user  AF    2016-04-05 13:23:05 6bf7f01f2… AF      Afgh…</span></a>
+<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="co">#&gt;  8             20 user  AL    2016-04-05 13:23:05 9d04a7e04… AL      Alba…</span></a>
+<a class="sourceLine" id="cb6-47" data-line-number="47"><span class="co">#&gt;  9             21 user  DZ    2016-04-05 13:23:05 3548cdf52… DZ      Alge…</span></a>
+<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="co">#&gt; 10             22 user  AD    2016-04-05 13:23:05 14fcb5099… AD      Ando…</span></a>
+<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="co">#&gt; # ... with 197 more rows, and 4 more variables: `official-name` &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="co">#&gt; #   `citizen-names` &lt;chr&gt;, `start-date` &lt;chr&gt;, `end-date` &lt;chr&gt;</span></a></code></pre></div>
 <p>You probably want to take a snapshot first. This will take the latest version of the schema, and the latest version of each record (e.g. the most recent name of a country)</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">country<span class="op">$</span>schema<span class="op">$</span>custodian</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; # A tibble: 2 x 6</span></a>
@@ -206,7 +219,16 @@
 <a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; 2 statistical-geography country                 curie area        </span></a>
 <a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; 3 statistical-geography territory               curie area        </span></a>
 <a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt; 4 statistical-geography government-organisation curie organisation</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; 5 statistical-geography local-authority-eng     curie organisation</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; 5 statistical-geography local-authority-eng     curie organisation</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw"><a href="reference/rr_key.html">rr_key_links</a></span>(registers<span class="op">$</span><span class="st">`</span><span class="dt">statistical-geography</span><span class="st">`</span>)</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; # A tibble: 1 x 2</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;   field    register</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;   </span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt; 1 register register</span></a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="kw"><a href="reference/rr_snapshot.html">rr_snapshot</a></span>(registers<span class="op">$</span><span class="st">`</span><span class="dt">statistical-geography</span><span class="st">`</span>)<span class="op">$</span>schema<span class="op">$</span>names</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt; # A tibble: 0 x 5</span></a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt; # ... with 5 variables: `entry-number` &lt;int&gt;, type &lt;chr&gt;, key &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="co">#&gt; #   timestamp &lt;dttm&gt;, hash &lt;chr&gt;</span></a></code></pre></div>
 <p>Resolve links with the <code>rr_resolve_*()</code> family of functions. Because links refer to whole records, whole records are returned in a list-column of data frames.</p>
 <p>If a matching record has multiple entries, every entry is returned in a multi-row data frame.</p>
 <p>If a linking field is <code>cardinality = 'n'</code>, a list of data frames is returned.</p>
@@ -258,12 +280,12 @@
 <a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_edge_loop">geom_edge_loop</a></span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb11-10" data-line-number="10"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_label</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb11-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_void</span>()</a></code></pre></div>
-<p><img src="README-unnamed-chunk-12-1.png" width="672"></p>
+<p><img src="README-unnamed-chunk-12-1.png" width="700"></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb12-2" data-line-number="2">edge_arrow &lt;-<span class="st"> </span><span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">"mm"</span>), <span class="dt">type =</span> <span class="st">"closed"</span>)</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3">registers <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/rr_links.html">rr_links</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(from, to, type) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/dplyr/topics/distinct">distinct</a></span>(from, to, type) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph">as_tbl_graph</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/ggraph">ggraph</a></span>(<span class="dt">layout =</span> <span class="st">"nicely"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_node_point">geom_node_point</a></span>() <span class="op">+</span></a>
@@ -275,7 +297,7 @@
 <a class="sourceLine" id="cb12-14" data-line-number="14">                   <span class="dt">end_cap =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geometry">circle</a></span>(<span class="dv">2</span>, <span class="st">'mm'</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-15" data-line-number="15"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggraph/topics/geom_node_text">geom_node_label</a></span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">repel =</span> <span class="ot">TRUE</span>, <span class="dt">alpha =</span> <span class="fl">.5</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-16" data-line-number="16"><span class="st">    </span><span class="kw">theme_void</span>()</a></code></pre></div>
-<p><img src="README-unnamed-chunk-12-2.png" width="672"></p>
+<p><img src="README-unnamed-chunk-12-2.png" width="700"></p>
 </div>
 <div id="index-registers" class="section level3">
 <h3 class="hasAnchor">
@@ -321,7 +343,7 @@
 <a class="sourceLine" id="cb13-38" data-line-number="38"><span class="co">#&gt;  9 country:DZ &lt;tibble [1 × 11]&gt;</span></a>
 <a class="sourceLine" id="cb13-39" data-line-number="39"><span class="co">#&gt; 10 country:AD &lt;tibble [1 × 11]&gt;</span></a>
 <a class="sourceLine" id="cb13-40" data-line-number="40"><span class="co">#&gt; # ... with 189 more rows</span></a>
-<a class="sourceLine" id="cb13-41" data-line-number="41"><span class="kw"><a href="reference/rr_index.html">rr_index</a></span>(<span class="kw"><a href="reference/rr_register.html">rr_register</a></span>(<span class="st">"local-authority-eng"</span>), <span class="st">"local-authority-type"</span>)</a>
+<a class="sourceLine" id="cb13-41" data-line-number="41"><span class="kw"><a href="reference/rr_index.html">rr_index</a></span>(registers<span class="op">$</span><span class="st">`</span><span class="dt">local-authority-eng</span><span class="st">`</span>, <span class="st">"local-authority-type"</span>)</a>
 <a class="sourceLine" id="cb13-42" data-line-number="42"><span class="co">#&gt; # A tibble: 7 x 2</span></a>
 <a class="sourceLine" id="cb13-43" data-line-number="43"><span class="co">#&gt;   .curie                  .data              </span></a>
 <a class="sourceLine" id="cb13-44" data-line-number="44"><span class="co">#&gt;   &lt;chr&gt;                   &lt;list&gt;             </span></a>
@@ -332,7 +354,6 @@
 <a class="sourceLine" id="cb13-49" data-line-number="49"><span class="co">#&gt; 5 local-authority-eng:LBO &lt;tibble [32 × 11]&gt; </span></a>
 <a class="sourceLine" id="cb13-50" data-line-number="50"><span class="co">#&gt; 6 local-authority-eng:CC  &lt;tibble [1 × 11]&gt;  </span></a>
 <a class="sourceLine" id="cb13-51" data-line-number="51"><span class="co">#&gt; 7 local-authority-eng:SRA &lt;tibble [1 × 11]&gt;</span></a></code></pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -376,6 +397,8 @@
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

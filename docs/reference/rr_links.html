@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Links between registers — rr_links • RegistersClientR</title>
+<title>Links between registers — rr_links • registr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Links between registers — rr_links" />
 
 <meta property="og:description" content="Registers can link to each other either by a field with the "register"
@@ -56,7 +59,7 @@ more about that.  rr_links() returns a data frame of edges." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">RegistersClientR</a>
+        <a class="navbar-link" href="../index.html">registr</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
@@ -80,6 +83,7 @@ more about that.  rr_links() returns a data frame of edges." />
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -87,18 +91,21 @@ more about that.  rr_links() returns a data frame of edges." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Links between registers</h1>
     
+    <div class="hidden name"><code>rr_links.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Registers can link to each other either by a field with the <code>"register"</code>
 property, or via CURIEs.  See <code><a href='rr_key.html'>rr_key_links()</a></code> and <code><a href='rr_curie.html'>rr_curie_links()</a></code> for
 more about that.  <code>rr_links()</code> returns a data frame of edges.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>rr_links</span>(<span class='no'>x</span>)</pre>
     
@@ -129,40 +136,8 @@ registers will be returned.</p></td>
 #&gt;   from     to       type  field         
 #&gt;   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;         
 #&gt; 1 allergen allergen key   allergen-group</div><div class='input'>
-<span class='no'>registers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_registers.html'>rr_registers</a></span>()</div><div class='output co'>#&gt; country 
-#&gt; field 
-#&gt; territory 
-#&gt; government-organisation 
-#&gt; government-service 
-#&gt; local-authority-sct 
-#&gt; principal-local-authority 
-#&gt; register 
-#&gt; datatype 
-#&gt; internal-drainage-board 
-#&gt; registration-district 
-#&gt; statistical-geography-unitary-authority-wls 
-#&gt; statistical-geography 
-#&gt; prison-estate 
-#&gt; local-authority-nir 
-#&gt; statistical-geography-county-eng 
-#&gt; statistical-geography-london-borough-eng 
-#&gt; statistical-geography-metropolitan-district-eng 
-#&gt; statistical-geography-registration-district-eng 
-#&gt; statistical-geography-registration-district-wls 
-#&gt; statistical-geography-non-metropolitan-district-eng 
-#&gt; statistical-geography-unitary-authority-eng 
-#&gt; allergen 
-#&gt; statistical-geography-local-government-district-nir 
-#&gt; jobcentre 
-#&gt; jobcentre-district 
-#&gt; jobcentre-group 
-#&gt; local-authority-type 
-#&gt; local-authority-eng 
-#&gt; qualification-assessment-method 
-#&gt; qualification-level 
-#&gt; qualification-sector-subject-area 
-#&gt; qualification-type 
-#&gt; government-domain </div><div class='input'><span class='fu'>rr_links</span>(<span class='no'>registers</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 4
+<span class='no'>registers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_registers.html'>rr_registers</a></span>()
+<span class='fu'>rr_links</span>(<span class='no'>registers</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 4
 #&gt;    from                                        to            type  field       
 #&gt;    &lt;chr&gt;                                       &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;       
 #&gt;  1 field                                       datatype      key   datatype    
@@ -189,7 +164,7 @@ registers will be returned.</p></td>
   <span class='no'>edge_arrow</span> <span class='kw'>&lt;-</span> <span class='fu'>arrow</span>(<span class='kw'>length</span> <span class='kw'>=</span> <span class='fu'>unit</span>(<span class='fl'>4</span>, <span class='st'>"mm"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"closed"</span>)
   <span class='no'>registers</span> <span class='kw'>%&gt;%</span>
     <span class='fu'>rr_links</span>() <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span>(<span class='no'>from</span>, <span class='no'>to</span>, <span class='no'>type</span>) <span class='kw'>%&gt;%</span>
+    <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/distinct'>distinct</a></span>(<span class='no'>from</span>, <span class='no'>to</span>, <span class='no'>type</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='http://www.rdocumentation.org/packages/tidygraph/topics/tbl_graph'>as_tbl_graph</a></span>() <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='http://www.rdocumentation.org/packages/ggraph/topics/ggraph'>ggraph</a></span>(<span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"nicely"</span>) +
       <span class='fu'><a href='http://www.rdocumentation.org/packages/ggraph/topics/geom_node_point'>geom_node_point</a></span>() +
@@ -201,11 +176,7 @@ registers will be returned.</p></td>
                      <span class='kw'>end_cap</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/ggraph/topics/geometry'>circle</a></span>(<span class='fl'>2</span>, <span class='st'>'mm'</span>)) +
       <span class='fu'><a href='http://www.rdocumentation.org/packages/ggraph/topics/geom_node_text'>geom_node_label</a></span>(<span class='fu'>aes</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='no'>name</span>), <span class='kw'>repel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>.5</span>) +
       <span class='fu'>theme_void</span>()
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: tidygraph</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘tidygraph’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: ggraph</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='output co'>#&gt; <span class='message'>Want to understand how all the pieces fit together? Buy the ggplot2</span>
-#&gt; <span class='message'>book: http://ggplot2.org/book/</span></div><div class='img'><img src='rr_links-1.png' alt='' width='700' height='433' /></div></pre>
+}</div><div class='img'><img src='rr_links-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -229,6 +200,8 @@ registers will be returned.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

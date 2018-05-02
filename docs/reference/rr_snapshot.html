@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A snapshot of a whole register — rr_snapshot • RegistersClientR</title>
+<title>A snapshot of a whole register — rr_snapshot • registr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="A snapshot of a whole register — rr_snapshot" />
 
 <meta property="og:description" content="Returns a register as it was at a given time, with no history
@@ -57,7 +60,7 @@ data, but without adjusting the data to the schema of the same time." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">RegistersClientR</a>
+        <a class="navbar-link" href="../index.html">registr</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
@@ -81,6 +84,7 @@ data, but without adjusting the data to the schema of the same time." />
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -88,19 +92,22 @@ data, but without adjusting the data to the schema of the same time." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>A snapshot of a whole register</h1>
     
+    <div class="hidden name"><code>rr_snapshot.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Returns a register as it was at a given time, with no history
 and no future.</p>
 <p>Use <code><a href='rr_records.html'>rr_records()</a></code> for snapshots of specifically a register's schema or its
 data, but without adjusting the data to the schema of the same time.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>rr_snapshot</span>(<span class='no'>register</span>, <span class='kw'>sequence</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"entry-number"</span>, <span class='st'>"timestamp"</span>),
   <span class='kw'>maximum</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>include_maximum</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>parse_datetimes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -192,6 +199,8 @@ If the <code>timestamp</code> is not unique, then the entry with the maximum
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

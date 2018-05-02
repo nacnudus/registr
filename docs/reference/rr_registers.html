@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download all registers from an environment — rr_registers • RegistersClientR</title>
+<title>Download all registers from an environment — rr_registers • registr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Download all registers from an environment — rr_registers" />
 
 <meta property="og:description" content="Downloads all the registers listed in the register register of
@@ -58,7 +61,7 @@ read them from disk." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">RegistersClientR</a>
+        <a class="navbar-link" href="../index.html">registr</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
@@ -82,6 +85,7 @@ read them from disk." />
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -89,13 +93,15 @@ read them from disk." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Download all registers from an environment</h1>
     
+    <div class="hidden name"><code>rr_registers.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Downloads all the registers listed in the register register of
 an environment ('alpha', 'beta', or 'discovery'), meaning 'ready to use',
@@ -103,6 +109,7 @@ an environment ('alpha', 'beta', or 'discovery'), meaning 'ready to use',
 <p>Unlike <code><a href='rr_register.html'>rr_register()</a></code> this function only downloads register, and does not
 read them from disk.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>rr_registers</span>(<span class='kw'>phase</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"beta"</span>, <span class='st'>"alpha"</span>, <span class='st'>"discovery"</span>), <span class='kw'>dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>parse_datetimes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>write</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dest_dir</span> <span class='kw'>=</span> <span class='no'>phase</span>,
@@ -150,40 +157,7 @@ register to.  The file names will be the names of the registers.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fs</span><span class='kw ns'>::</span><span class='fu'><a href='http://fs.r-lib.org/reference/path.html'>path</a></span>(<span class='fu'>tempdir</span>(), <span class='st'>"beta"</span>)
-<span class='fu'>names</span>(<span class='fu'>rr_registers</span>(<span class='st'>"beta"</span>, <span class='kw'>write</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dest_dir</span> <span class='kw'>=</span> <span class='no'>path</span>))</div><div class='output co'>#&gt; country 
-#&gt; field 
-#&gt; territory 
-#&gt; government-organisation 
-#&gt; government-service 
-#&gt; local-authority-sct 
-#&gt; principal-local-authority 
-#&gt; register 
-#&gt; datatype 
-#&gt; internal-drainage-board 
-#&gt; registration-district 
-#&gt; statistical-geography-unitary-authority-wls 
-#&gt; statistical-geography 
-#&gt; prison-estate 
-#&gt; local-authority-nir 
-#&gt; statistical-geography-county-eng 
-#&gt; statistical-geography-london-borough-eng 
-#&gt; statistical-geography-metropolitan-district-eng 
-#&gt; statistical-geography-registration-district-eng 
-#&gt; statistical-geography-registration-district-wls 
-#&gt; statistical-geography-non-metropolitan-district-eng 
-#&gt; statistical-geography-unitary-authority-eng 
-#&gt; allergen 
-#&gt; statistical-geography-local-government-district-nir 
-#&gt; jobcentre 
-#&gt; jobcentre-district 
-#&gt; jobcentre-group 
-#&gt; local-authority-type 
-#&gt; local-authority-eng 
-#&gt; qualification-assessment-method 
-#&gt; qualification-level 
-#&gt; qualification-sector-subject-area 
-#&gt; qualification-type 
-#&gt; government-domain </div><div class='output co'>#&gt;  [1] "country"                                            
+<span class='fu'>names</span>(<span class='fu'>rr_registers</span>(<span class='st'>"beta"</span>, <span class='kw'>write</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>dest_dir</span> <span class='kw'>=</span> <span class='no'>path</span>))</div><div class='output co'>#&gt;  [1] "country"                                            
 #&gt;  [2] "field"                                              
 #&gt;  [3] "territory"                                          
 #&gt;  [4] "government-organisation"                            
@@ -275,6 +249,8 @@ register to.  The file names will be the names of the registers.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

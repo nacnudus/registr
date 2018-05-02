@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A snapshot of records from given entries — rr_records • RegistersClientR</title>
+<title>A snapshot of records from given entries — rr_records • registr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="A snapshot of records from given entries — rr_records" />
 
 <meta property="og:description" content="Filters for entries up to a given entry-number or timestamp,
@@ -57,7 +60,7 @@ data)." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">RegistersClientR</a>
+        <a class="navbar-link" href="../index.html">registr</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
@@ -81,6 +84,7 @@ data)." />
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -88,19 +92,22 @@ data)." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>A snapshot of records from given entries</h1>
     
+    <div class="hidden name"><code>rr_records.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Filters for entries up to a given <code>entry-number</code> or <code>timestamp</code>,
 then returns the latest entry per <code>key</code>.</p>
 <p>Use <code><a href='rr_snapshot.html'>rr_snapshot()</a></code> for a snapshot of a whole register (both schema and
 data).</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>rr_records</span>(<span class='no'>entries</span>, <span class='kw'>sequence</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"entry-number"</span>, <span class='st'>"timestamp"</span>),
   <span class='kw'>maximum</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>include_maximum</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -150,8 +157,8 @@ If the <code>timestamp</code> is not unique, then the entry with the maximum
 
 <span class='co'># There can be more than one entry per key</span>
 <span class='no'>country</span>$<span class='no'>data</span> <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>name</span>, <span class='no'>`official-name`</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 4
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>name</span>, <span class='no'>`official-name`</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 4
 #&gt;   `entry-number` timestamp           name           `official-name`   
 #&gt;            &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;             
 #&gt; 1             64 2016-04-05 13:23:05 Czech Republic The Czech Republic
@@ -159,15 +166,15 @@ If the <code>timestamp</code> is not unique, then the entry with the maximum
 <span class='co'># Snapshot by entry number</span>
 <span class='no'>country</span>$<span class='no'>data</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>rr_records</span>(<span class='kw'>maximum</span> <span class='kw'>=</span> <span class='fl'>64</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>name</span>, <span class='no'>`official-name`</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 4
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>name</span>, <span class='no'>`official-name`</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 4
 #&gt;   `entry-number` timestamp           name           `official-name`   
 #&gt;            &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;             
 #&gt; 1             64 2016-04-05 13:23:05 Czech Republic The Czech Republic</div><div class='input'>
 <span class='no'>country</span>$<span class='no'>data</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>rr_records</span>(<span class='kw'>maximum</span> <span class='kw'>=</span> <span class='fl'>217</span>, <span class='kw'>include_maximum</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>name</span>, <span class='no'>`official-name`</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 4
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>name</span>, <span class='no'>`official-name`</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 4
 #&gt;   `entry-number` timestamp           name           `official-name`   
 #&gt;            &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;             
 #&gt; 1             64 2016-04-05 13:23:05 Czech Republic The Czech Republic</div><div class='input'>
@@ -175,8 +182,8 @@ If the <code>timestamp</code> is not unique, then the entry with the maximum
 <span class='no'>country</span>$<span class='no'>data</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>rr_records</span>(<span class='kw'>sequence</span> <span class='kw'>=</span> <span class='st'>"timestamp"</span>,
              <span class='kw'>maximum</span> <span class='kw'>=</span> <span class='fu'>as.POSIXct</span>(<span class='st'>"2016-04-05 13:23:05"</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"UTC"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>name</span>, <span class='no'>`official-name`</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 4
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>name</span>, <span class='no'>`official-name`</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 4
 #&gt;   `entry-number` timestamp           name           `official-name`   
 #&gt;            &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;          &lt;chr&gt;             
 #&gt; 1             64 2016-04-05 13:23:05 Czech Republic The Czech Republic</div><div class='input'>
@@ -185,7 +192,7 @@ If the <code>timestamp</code> is not unique, then the entry with the maximum
 <span class='no'>entries</span> <span class='kw'>&lt;-</span> <span class='no'>country</span>$<span class='no'>data</span>
 <span class='no'>entries</span>$<span class='no'>timestamp</span>[<span class='no'>entries</span>$<span class='no'>`entry-number`</span> <span class='kw'>==</span> <span class='fl'>64</span>] <span class='kw'>&lt;-</span> <span class='fl'>NA</span>
 <span class='fu'>rr_records</span>(<span class='no'>entries</span>, <span class='kw'>sequence</span> <span class='kw'>=</span> <span class='st'>"timestamp"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>)</div><div class='output co'>#&gt; # A tibble: 0 x 11
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/filter'>filter</a></span>(<span class='no'>key</span> <span class='kw'>==</span> <span class='st'>"CZ"</span>)</div><div class='output co'>#&gt; # A tibble: 0 x 11
 #&gt; # ... with 11 variables: `entry-number` &lt;int&gt;, type &lt;chr&gt;, key &lt;chr&gt;,
 #&gt; #   timestamp &lt;dttm&gt;, hash &lt;chr&gt;, country &lt;chr&gt;, name &lt;chr&gt;,
 #&gt; #   `official-name` &lt;chr&gt;, `citizen-names` &lt;chr&gt;, `start-date` &lt;chr&gt;,
@@ -193,7 +200,7 @@ If the <code>timestamp</code> is not unique, then the entry with the maximum
 <span class='co'># Not all entries are data, some are schema</span>
 <span class='no'>country</span>$<span class='no'>schema</span>$<span class='no'>custodians</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>rr_records</span>(<span class='kw'>maximum</span> <span class='kw'>=</span> <span class='fl'>11</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>custodian</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 3
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(<span class='no'>`entry-number`</span>, <span class='no'>timestamp</span>, <span class='no'>custodian</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 3
 #&gt;   `entry-number` timestamp           custodian  
 #&gt;            &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;      
 #&gt; 1              2 2017-07-17 10:59:47 Tony Worron</div></pre>
@@ -224,6 +231,8 @@ If the <code>timestamp</code> is not unique, then the entry with the maximum
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

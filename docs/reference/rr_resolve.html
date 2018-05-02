@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Resolve links in registers — rr_resolve • RegistersClientR</title>
+<title>Resolve links in registers — rr_resolve • registr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Resolve links in registers — rr_resolve" />
 
 <meta property="og:description" content="Registers can link to each other either by a field with the "register"
@@ -65,7 +68,7 @@ Resolve all links in a register, both key and CURIE" />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">RegistersClientR</a>
+        <a class="navbar-link" href="../index.html">registr</a>
         <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.2</span>
       </span>
     </div>
@@ -89,6 +92,7 @@ Resolve all links in a register, both key and CURIE" />
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -96,13 +100,15 @@ Resolve all links in a register, both key and CURIE" />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Resolve links in registers</h1>
     
+    <div class="hidden name"><code>rr_resolve.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Registers can link to each other either by a field with the <code>"register"</code>
 property, or via CURIEs.  See <code><a href='rr_key.html'>rr_key_links()</a></code> and <code><a href='rr_curie.html'>rr_curie_links()</a></code> for
@@ -117,12 +123,16 @@ different set of fields.</p>
 <p>Resolve a CURIE field</p>
 <p>Resolve all links in a register, both key and CURIE</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>rr_resolve_key_field</span>(<span class='no'>field_name</span>, <span class='no'>register</span>, <span class='no'>registers</span>)
 
 <span class='fu'>rr_resolve_curie_field</span>(<span class='no'>field_name</span>, <span class='no'>register</span>, <span class='kw'>registers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
+<span class='fu'>rr_resolve_links</span>(<span class='no'>register</span>, <span class='no'>registers</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S3 method for register</span>
 <span class='fu'>rr_resolve_links</span>(<span class='no'>register</span>, <span class='no'>registers</span>, <span class='kw'>targets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -155,40 +165,8 @@ purrr::map_dfr(rr_index)</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>registers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_registers.html'>rr_registers</a></span>()</div><div class='output co'>#&gt; country 
-#&gt; field 
-#&gt; territory 
-#&gt; government-organisation 
-#&gt; government-service 
-#&gt; local-authority-sct 
-#&gt; principal-local-authority 
-#&gt; register 
-#&gt; datatype 
-#&gt; internal-drainage-board 
-#&gt; registration-district 
-#&gt; statistical-geography-unitary-authority-wls 
-#&gt; statistical-geography 
-#&gt; prison-estate 
-#&gt; local-authority-nir 
-#&gt; statistical-geography-county-eng 
-#&gt; statistical-geography-london-borough-eng 
-#&gt; statistical-geography-metropolitan-district-eng 
-#&gt; statistical-geography-registration-district-eng 
-#&gt; statistical-geography-registration-district-wls 
-#&gt; statistical-geography-non-metropolitan-district-eng 
-#&gt; statistical-geography-unitary-authority-eng 
-#&gt; allergen 
-#&gt; statistical-geography-local-government-district-nir 
-#&gt; jobcentre 
-#&gt; jobcentre-district 
-#&gt; jobcentre-group 
-#&gt; local-authority-type 
-#&gt; local-authority-eng 
-#&gt; qualification-assessment-method 
-#&gt; qualification-level 
-#&gt; qualification-sector-subject-area 
-#&gt; qualification-type 
-#&gt; government-domain </div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>registers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rr_registers.html'>rr_registers</a></span>()
+
 <span class='no'>targets</span> <span class='kw'>&lt;-</span>
   <span class='no'>registers</span> <span class='kw'>%&gt;%</span>
   <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/purrr/topics/map'>map</a></span>(<span class='no'>rr_snapshot</span>) <span class='kw'>%&gt;%</span>
@@ -297,6 +275,8 @@ purrr::map_dfr(rr_index)</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

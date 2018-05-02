@@ -12,35 +12,37 @@ knitr::opts_chunk$set(
 )
 ```
 
-# RegistersClientR
+# registr
 
-This package doesn't really wrap the
-[registers](https://registers.cloudapps.digital/)
+This is an unofficial client for the [GOV.UK](https://www.gov.uk/)
+[Registers](https://registers.cloudapps.digital/)
 [API](https://registers-docs.cloudapps.digital/#api-documentation-for-registers).
-Instead, it downloads the 'raw' registers in RSF (Register Serialisation
-Format), and parses that.
 
 Registers are authoritative lists of things, built and maintained by the UK
 government, for example, the `country` register is a list of countries.
+
+It doesn't really wrap the API.  Instead, it downloads the 'raw' registers in
+RSF (Register Serialisation Format -- not yet documented publicly), and parses
+that.
 
 ## Installation
 
 ```{r, eval = FALSE}
 # install.packages("devtools") # if you don't already have devtools installed
-devtools::install_github("openregister/RegistersClientR")
+devtools::install_github("nacnudus/registr")
 ```
 
 To install a very early version of the package for running old scripts:
 
 ```{r, eval = FALSE}
-devtools::install_github("openregister/RegistersClientR",
+devtools::install_github("nacnudus/registr",
                          ref = "08c42c95bc65a0cb8131100416a372660b8a1bd5")
 ```
 
 ## Examples
 
 ```{r, cache = TRUE}
-library(RegistersClientR)
+library(registr)
 ```
 
 ### Download registers
@@ -96,6 +98,8 @@ Registers link in two ways.
 
 ```{r, cache = TRUE}
 rr_links(registers$`statistical-geography`)
+rr_key_links(registers$`statistical-geography`)
+rr_snapshot(registers$`statistical-geography`)$schema$names
 ```
 
 Resolve links with the `rr_resolve_*()` family of functions.  Because links
@@ -160,5 +164,5 @@ country <- registers$country
 rr_index(country, "start-date")
 rr_index(country, "end-date")
 rr_index(country)
-rr_index(rr_register("local-authority-eng"), "local-authority-type")
+rr_index(registers$`local-authority-eng`, "local-authority-type")
 ```
