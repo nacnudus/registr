@@ -24,3 +24,5 @@ Imports: dplyr,
 Suggests: tidygraph,
     ggraph
 Roxygen: list(markdown = TRUE)
+URL: https://github.com/nacnudus/registr
+BugReports: https://github.com/nacnudus/registr/issues
