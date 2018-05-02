@@ -52,7 +52,7 @@ rr_links <- function(x) {
 
 #' @export
 rr_links.register <- function(x) {
-  name <- rr_snapshot(x)$schema$names$name
+  name <- rr_snapshot(x)$schema$ids$name
   key_links <- rr_key_links(x)
   curie_links <- rr_curie_links(x)
   dplyr::bind_rows(dplyr::mutate(key_links, type = "key"),

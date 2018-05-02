@@ -21,7 +21,7 @@
 #' rr_index(rr_register("local-authority-eng"), "local-authority-type")
 rr_index <- function(register, key = NULL) {
   snapshot <- rr_snapshot(register)
-  .register_name <- snapshot$schema$names$name
+  .register_name <- snapshot$schema$ids$name
   if (is.null(key)) key <- .register_name
   .key <- rlang::sym(key)
   cardinality <-

@@ -45,7 +45,7 @@ rr_key_links <- function(x) {
 #' @rdname rr_key
 #' @export
 rr_key_links.register <- function(x) {
-  register_name <- rr_snapshot(x)$schema$names$name
+  register_name <- rr_snapshot(x)$schema$ids$name
   x$schema$fields %>%
     dplyr::filter(!is.na(register), field != !! register_name) %>%
     dplyr::distinct(field, register)
