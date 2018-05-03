@@ -1,56 +1,52 @@
----
-output: github_document
----
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# registr
 
-# RegistersClientR
-
-This package doesn't really wrap the
-[registers](https://registers.cloudapps.digital/)
+This is an unofficial client for the [GOV.UK](https://www.gov.uk/)
+[Registers](https://registers.cloudapps.digital/)
 [API](https://registers-docs.cloudapps.digital/#api-documentation-for-registers).
-Instead, it downloads the 'raw' registers in RSF (Register Serialisation
-Format), and parses that.
 
-Registers are authoritative lists of things, built and maintained by the UK
-government, for example, the `country` register is a list of countries.
+Registers are authoritative lists of things, built and maintained by the
+UK government, for example, the `country` register is a list of
+countries.
+
+It doesn’t really wrap the API. Instead, it downloads the ‘raw’
+registers in RSF (Register Serialisation Format – not yet documented
+publicly), and parses
+that.
 
 ## Installation
 
-
-```r
+``` r
 # install.packages("devtools") # if you don't already have devtools installed
-devtools::install_github("openregister/RegistersClientR")
+devtools::install_github("nacnudus/registr")
 ```
 
 To install a very early version of the package for running old scripts:
 
-
-```r
-devtools::install_github("openregister/RegistersClientR",
+``` r
+devtools::install_github("nacnudus/registr",
                          ref = "08c42c95bc65a0cb8131100416a372660b8a1bd5")
 ```
 
 ## Examples
 
-
-```r
-library(RegistersClientR)
+``` r
+library(registr)
 ```
 
 ### Download registers
 
 Download a single register.
 
-
-```r
+``` r
 country <- rr_register("country")
 ```
 
 Download all registers.
 
-
-```r
+``` r
 registers <- rr_registers(quiet = TRUE)
 names(registers)
 #>  [1] "country"                                            
@@ -89,22 +85,27 @@ names(registers)
 #> [34] "government-domain"
 ```
 
-By default, the 'beta' ('ready to use') versions of registers are downloaded.
-If you need alpha ('open for feedback') registers, use `phase = "alpha")`
+By default, the ‘beta’ (‘ready to use’) versions of registers are
+downloaded. If you need alpha (‘open for feedback’) registers, use
+`phase = "alpha")`
 
 ### Explore register schema and data
 
 The schema and data are in `$shema` and `$data`.
 
-
-```r
+``` r
 country <- registers$country
 country$schema
-#> $names
+#> $ids
 #> # A tibble: 1 x 6
 #>   `entry-number` type   key   timestamp           hash               name 
 #>            <int> <chr>  <chr> <dttm>              <chr>              <chr>
 #> 1              1 system name  2017-07-17 10:59:47 d3d8e15fbd410e08b… coun…
+#> 
+#> $names
+#> # A tibble: 0 x 5
+#> # ... with 5 variables: `entry-number` <int>, type <chr>, key <chr>,
+#> #   timestamp <dttm>, hash <chr>
 #> 
 #> $custodians
 #> # A tibble: 2 x 6
@@ -145,12 +146,11 @@ country$data
 #> #   `citizen-names` <chr>, `start-date` <chr>, `end-date` <chr>
 ```
 
-You probably want to take a snapshot first.  This will take the latest version
-of the schema, and the latest version of each record (e.g. the most recent name
-of a country)
+You probably want to take a snapshot first. This will take the latest
+version of the schema, and the latest version of each record (e.g. the
+most recent name of a country)
 
-
-```r
+``` r
 country$schema$custodian
 #> # A tibble: 2 x 6
 #>   `entry-number` type   key       timestamp           hash       custodian
@@ -164,22 +164,23 @@ rr_snapshot(country)$schema$custodian
 #> 1             12 system custodian 2017-11-02 11:18:00 aa98858fc… David de…
 ```
 
-Each field of each entry can contain more than one value, if the field has the
-property `cardinality = 'n'`.  In this case, the field is a list-column, where
-each value is a vector of values.
+Each field of each entry can contain more than one value, if the field
+has the property `cardinality = 'n'`. In this case, the field is a
+list-column, where each value is a vector of values.
 
 ### Linked registers
 
 Registers link in two ways.
 
-* Via a field with the `"register"` property set in the schema.  This is like a
-  foreign/primary key relationship in a relational database.
-* Via CURIEs of the form `"prefix:reference"`, where `prefix` is the name of
-  a register, and `reference` is a value in the primary field of that register
-  (the field with the same name as the register).
+  - Via a field with the `"register"` property set in the schema. This
+    is like a foreign/primary key relationship in a relational database.
+  - Via CURIEs of the form `"prefix:reference"`, where `prefix` is the
+    name of a register, and `reference` is a value in the primary field
+    of that register (the field with the same name as the register).
 
+<!-- end list -->
 
-```r
+``` r
 rr_links(registers$`statistical-geography`)
 #> # A tibble: 5 x 4
 #>   from                  to                      type  field       
@@ -189,19 +190,28 @@ rr_links(registers$`statistical-geography`)
 #> 3 statistical-geography territory               curie area        
 #> 4 statistical-geography government-organisation curie organisation
 #> 5 statistical-geography local-authority-eng     curie organisation
+rr_key_links(registers$`statistical-geography`)
+#> # A tibble: 1 x 2
+#>   field    register
+#>   <chr>    <chr>   
+#> 1 register register
+rr_snapshot(registers$`statistical-geography`)$schema$names
+#> # A tibble: 0 x 5
+#> # ... with 5 variables: `entry-number` <int>, type <chr>, key <chr>,
+#> #   timestamp <dttm>, hash <chr>
 ```
 
-Resolve links with the `rr_resolve_*()` family of functions.  Because links
-refer to whole records, whole records are returned in a list-column of data
-frames.
+Resolve links with the `rr_resolve_*()` family of functions. Because
+links refer to whole records, whole records are returned in a
+list-column of data frames.
 
 If a matching record has multiple entries, every entry is returned in a
 multi-row data frame.
 
-If a linking field is `cardinality = 'n'`, a list of data frames is returned.
+If a linking field is `cardinality = 'n'`, a list of data frames is
+returned.
 
-
-```r
+``` r
 rr_resolve_links(registers$`statistical-geography`, registers)$data
 #> # A tibble: 175 x 12
 #>    `entry-number` type  key   timestamp           hash    `statistical-ge…
@@ -224,8 +234,7 @@ rr_resolve_links(registers$`statistical-geography`, registers)$data
 You can resolve to only the latest entry of each record by creating a
 `registers` object with snapshots.
 
-
-```r
+``` r
 registers_snapshot <- purrr::map(registers, rr_snapshot)
 rr_resolve_links(registers$`statistical-geography`, registers_snapshot)$data
 #> # A tibble: 175 x 12
@@ -246,12 +255,18 @@ rr_resolve_links(registers$`statistical-geography`, registers_snapshot)$data
 #> #   `end-date` <chr>
 ```
 
-Plot the links between registers with something like the `ggraph` package.
+Plot the links between registers with something like the `ggraph`
+package.
 
-
-```r
+``` r
 library(tidygraph)
+#> 
+#> Attaching package: 'tidygraph'
+#> The following object is masked from 'package:stats':
+#> 
+#>     filter
 library(ggraph)
+#> Loading required package: ggplot2
 
 registers$`statistical-geography` %>%
   rr_links() %>%
@@ -263,9 +278,9 @@ registers$`statistical-geography` %>%
     theme_void()
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="100%" />
+![](README-unnamed-chunk-12-1.png)<!-- -->
 
-```r
+``` r
 
 edge_arrow <- arrow(length = unit(4, "mm"), type = "closed")
 registers %>%
@@ -284,14 +299,13 @@ registers %>%
     theme_void()
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-2.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="100%" />
+![](README-unnamed-chunk-12-2.png)<!-- -->
 
 ### Index registers
 
 You can index registers by any column, using CURIE-like syntax.
 
-
-```r
+``` r
 country <- registers$country
 rr_index(country, "start-date")
 #> # A tibble: 50 x 2
@@ -332,7 +346,7 @@ rr_index(country)
 #>  9 country:DZ <tibble [1 × 11]>
 #> 10 country:AD <tibble [1 × 11]>
 #> # ... with 189 more rows
-rr_index(rr_register("local-authority-eng"), "local-authority-type")
+rr_index(registers$`local-authority-eng`, "local-authority-type")
 #> # A tibble: 7 x 2
 #>   .curie                  .data              
 #>   <chr>                   <list>             
