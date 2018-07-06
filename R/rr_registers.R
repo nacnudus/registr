@@ -22,13 +22,15 @@
 #' @export
 rr_registers <- function(phase = c("beta", "alpha", "discovery"),
                          dir = NULL,
-                         parse_datetimes = FALSE, write = FALSE,
+                         parse_datetimes = FALSE,
+                         write = FALSE,
                          dest_dir = phase,
-                         quiet = TRUE) {
+                         quiet = TRUE,
+                         api_key = "") {
   phase <- match.arg(phase)
   if (is.null(dir)) {
     register_names <-
-      rr_register("register", phase, quiet = quiet) %>%
+      rr_register("register", phase, quiet = quiet, api_key = api_key) %>%
       rr_snapshot() %>%
       purrr::pluck("data") %>%
       dplyr::pull(register)

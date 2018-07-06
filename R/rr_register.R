@@ -24,8 +24,14 @@
 #' @export
 rr_register <- function(name = NULL, phase = c("beta", "alpha", "discovery"),
                         file = NULL, write = FALSE, dest_path = NULL,
-                        parse_datetimes = FALSE, quiet = TRUE) {
-  rsf <- rr_rsf(name, phase, file, write, dest_path, quiet = quiet)
+                        parse_datetimes = FALSE, quiet = TRUE, api_key = "") {
+  rsf <- rr_rsf(name,
+                phase,
+                file,
+                write,
+                dest_path,
+                quiet = quiet,
+                api_key = api_key)
   if (length(rsf) == 0) return(NULL)
   root_hash <- parse_root_hash(rsf)
   entries <- parse_entries(rsf)

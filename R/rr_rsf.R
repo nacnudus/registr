@@ -13,13 +13,14 @@
 #'   either `name` or `dest_path` must be provided.
 #' @param dest_path Character, path and file name to write the RSF to.
 #' @param quiet Logical, if `TRUE` does not print messages to the console.
+#' @param api_key Character, your API key.
 #'
 #' @export
 #' @examples
 #' rr_rsf("country")
 rr_rsf <- function(name = NULL, phase = c("beta", "alpha", "discovery"),
                    file = NULL, write = FALSE, dest_path = NULL,
-                   quiet = FALSE) {
+                   quiet = FALSE, api_key = "") {
   phase <- match.arg(phase)
   if (write) {
     if (is.null(dest_path)) {
@@ -44,13 +45,17 @@ rr_rsf <- function(name = NULL, phase = c("beta", "alpha", "discovery"),
               "' from the '", phase, "' phase ...\n")
     }
     register_path <- tempfile()
+    handle <- curl::new_handle(`user-agent` = "https://github.com/nacnudus/registr")
     on.exit(unlink(register_path))
     download <-
-      tryCatch({download.file(register_url, register_path, quiet = quiet)},
-        error = function(e) {
-          simpleWarning(glue::glue("The register {name} could not be downloaded"))
-          return(NULL)
-        })
+      tryCatch({curl::curl_download(register_url,
+                            register_path,
+                            quiet = quiet,
+                            handle = handle)},
+               error = function(e) {
+                 simpleWarning(glue::glue("The register {name} could not be downloaded"))
+                 return(NULL)
+               })
     if (is.null(download)) return(NULL)
     out <- readr::read_lines(register_path)
   }
