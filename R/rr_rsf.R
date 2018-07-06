@@ -45,7 +45,7 @@ rr_rsf <- function(name = NULL, phase = c("beta", "alpha", "discovery"),
               "' from the '", phase, "' phase ...\n")
     }
     register_path <- tempfile()
-    handle <- curl::new_handle(`user-agent` = "https://github.com/nacnudus/registr")
+    handle <- curl::new_handle(useragent = "https://github.com/nacnudus/registr")
     on.exit(unlink(register_path))
     download <-
       tryCatch({curl::curl_download(register_url,
